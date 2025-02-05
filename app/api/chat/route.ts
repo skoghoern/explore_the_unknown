@@ -1,9 +1,9 @@
-import { mistral } from "@ai-sdk/mistral"
-import { streamText } from "ai"
+import { mistral } from "@ai-sdk/mistral";
+import { streamText } from "ai";
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json()
+    const { messages } = await req.json();
     const result = streamText({
       model: mistral("mistral-large-latest"),
       messages: [
@@ -29,17 +29,19 @@ export async function POST(req: Request) {
           content: msg.content,
         })),
       ],
-    })
+    });
 
-    return result.toDataStreamResponse()
+    return result.toDataStreamResponse();
   } catch (error) {
-    console.error("Chat API error:", error)
-    return new Response(JSON.stringify({ error: "Failed to process request" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    console.error("Chat API error:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to process request" }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   }
 }
-

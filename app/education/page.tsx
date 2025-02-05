@@ -2,50 +2,42 @@
 
 import { useState } from "react";
 import { useChat } from "ai/react";
-import BackgroundPaths from "@/components/background-paths";
+import BackgroundPaths from "@/components/kokonutui/background-paths";
 import ChatInterface from "@/components/chat-interface";
 import LearningPath from "@/components/learning-path";
 import { toast } from "sonner";
 
 export default function EducationPage() {
   const [learningPath, setLearningPath] = useState(null);
-  const [messages, setMessages] = useState([]); // Added state for messages
 
-  const { input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: "/api/chat",
-    onFinish: (message) => {
-      try {
-        const parts = message.content.split("**Learning Path:**");
-        const briefAnswer = parts[0].replace("**Brief Answer:**", "").trim();
-        const jsonStart = parts[1].indexOf("{");
-        const jsonEnd = parts[1].lastIndexOf("}");
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat({
+      api: "/api/chat",
+      onFinish: (message) => {
+        try {
+          const jsonStart = message.content.indexOf("{");
+          const jsonEnd = message.content.lastIndexOf("}");
 
-        if (jsonStart !== -1 && jsonEnd !== -1) {
-          const jsonStr = parts[1].slice(jsonStart, jsonEnd + 1);
-          const pathData = JSON.parse(jsonStr);
+          if (jsonStart !== -1 && jsonEnd !== -1) {
+            const jsonStr = message.content.slice(jsonStart, jsonEnd + 1);
+            const pathData = JSON.parse(jsonStr);
 
-          if (pathData.topic && Array.isArray(pathData.steps)) {
-            setLearningPath(pathData);
-          } else {
-            throw new Error("Invalid learning path structure");
+            if (pathData.topic && Array.isArray(pathData.steps)) {
+              setLearningPath(pathData);
+            } else {
+              throw new Error("Invalid learning path structure");
+            }
           }
+        } catch (error) {
+          console.error("Failed to parse learning path:", error);
+          toast.error("Failed to generate learning path. Please try again.");
         }
-
-        // Update the messages state to only show the brief answer
-        setMessages((prevMessages) => [
-          ...prevMessages.slice(0, -1),
-          { ...prevMessages[prevMessages.length - 1], content: briefAnswer },
-        ]);
-      } catch (error) {
-        console.error("Failed to parse learning path:", error);
-        toast.error("Failed to generate learning path. Please try again.");
-      }
-    },
-    onError: (error) => {
-      console.error("Chat error:", error);
-      toast.error("An error occurred. Please try again.");
-    },
-  });
+      },
+      onError: (error) => {
+        console.error("Chat error:", error);
+        toast.error("An error occurred. Please try again.");
+      },
+    });
 
   return (
     <>
