@@ -61,7 +61,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="bg-gray-900 py-6 mt-8">
         <div className="max-w-7xl mx-auto text-center text-gray-400">
-          © 2025 AI Learning Platform. All rights reserved.
+          © 2025 Active Inference - Explore The Unknown. All rights reserved.
         </div>
       </footer>
     </div>

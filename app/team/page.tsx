@@ -8,7 +8,7 @@ const teamMembers = [
   {
     name: "Vladimir Baulin",
     role: "Technical project lead",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Researcher in computational soft matter physics and biophysics.",
     social: {
       linkedin: "#",
@@ -18,7 +18,7 @@ const teamMembers = [
   {
     name: "Austin Cook",
     role: "AI Developer",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "alignmentlab.ai",
     social: {
       linkedin: "#",
@@ -28,7 +28,7 @@ const teamMembers = [
   {
     name: "Andrea Farias",
     role: "User Experience & Interface",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Passionate about Active Inference and research",
     social: {
       linkedin: "#",
@@ -38,7 +38,7 @@ const teamMembers = [
   {
     name: "Daniel Friedman",
     role: "Executive Director",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Officer at Active Inference Institute",
     social: {
       linkedin: "#",
@@ -48,7 +48,7 @@ const teamMembers = [
   {
     name: "Janna Lumiruusu",
     role: "User Experience & Interface",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Passionate about active inference and UI/UX",
     social: {
       linkedin: "#",
@@ -58,7 +58,7 @@ const teamMembers = [
   {
     name: "Andrew Pashea",
     role: "Active Inference programmer",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Scientific Advisory Board at Active Inference Institute",
     social: {
       linkedin: "#",
@@ -68,7 +68,7 @@ const teamMembers = [
   {
     name: "Shagor Rahman",
     role: "Project Manager",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "10 + Years of PM Experience in Data Driven/AI/Analytical Software",
     social: {
       linkedin: "#",
@@ -78,7 +78,7 @@ const teamMembers = [
   {
     name: "Benedikt Waldeck",
     role: "Active Inference programmer",
-    image: "/placeholder.svg?height=200&width=200",
+    image: "/active_inference.png",
     bio: "Passionate about developing transparent AI",
     social: {
       linkedin: "#",
@@ -96,12 +96,14 @@ export default function TeamPage() {
           {teamMembers.map((member) => (
             <Card key={member.name} className="overflow-hidden">
               <div className="aspect-square relative">
-                <Image
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
+                <div className="w-[50%] h-[50%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <Image
+                    src={member.image || "/active_inference.png"}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <CardHeader className="p-3">
                 <CardTitle className="text-sm">{member.name}</CardTitle>
