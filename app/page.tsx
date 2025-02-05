@@ -7,11 +7,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <header className="py-20 md:py-32 text-center px-4">
         <h1 className="text-5xl md:text-6xl font-bold">
-          Unlock New Frontiers in Research & Education
+          Explore the Unknown Together
         </h1>
         <p className="mt-6 text-xl md:text-2xl max-w-2xl mx-auto text-gray-400">
-          Merging autonomous scientific discovery with personalized learning
-          journeys to drive innovation and empower knowledge seekers.
+          A collaborative development platform for open, decentralized science
+          that empowers innovation and knowledge sharing.
         </p>
       </header>
 
