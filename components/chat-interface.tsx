@@ -8,15 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
-
-interface Message {
-  id: string; // or number, depending on your implementation
-  role: "user" | "assistant"; // specify roles if known
-  content: string;
-}
+import type { Message } from "ai/react"; // import the UIMessage type
 
 interface ChatInterfaceProps {
-  messages: Message[]; // Ensure this is correctly typed
+  messages: Message[]; // use UIMessage instead of any
   input: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
