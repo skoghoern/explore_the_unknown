@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export default function BackgroundPaths({ title }: { title: string }) {
   return (
@@ -13,7 +13,11 @@ export default function BackgroundPaths({ title }: { title: string }) {
       >
         {title}
       </motion.div>
-      <svg className="absolute bottom-0 left-0 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <svg
+        className="absolute bottom-0 left-0 w-full"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+      >
         <motion.path
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
@@ -24,6 +28,5 @@ export default function BackgroundPaths({ title }: { title: string }) {
         ></motion.path>
       </svg>
     </div>
-  )
+  );
 }
-

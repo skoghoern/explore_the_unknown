@@ -1,14 +1,20 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 
 interface ChatInterfaceProps {
-  messages: any[]
-  input: string
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  isLoading: boolean
+  messages: any[];
+  input: string;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
 }
 
 export default function ChatInterface({
@@ -25,10 +31,15 @@ export default function ChatInterface({
       </CardHeader>
       <CardContent className="h-[60vh] overflow-y-auto">
         {messages.map((m) => (
-          <div key={m.id} className={`mb-4 ${m.role === "user" ? "text-right" : "text-left"}`}>
+          <div
+            key={m.id}
+            className={`mb-4 ${m.role === "user" ? "text-right" : "text-left"}`}
+          >
             <span
               className={`inline-block p-2 rounded-lg ${
-                m.role === "user" ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-200"
+                m.role === "user"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-800 text-gray-200"
               }`}
             >
               {m.content}
@@ -53,12 +64,15 @@ export default function ChatInterface({
             className="flex-grow bg-gray-800 text-white border-gray-700"
             disabled={isLoading}
           />
-          <Button type="submit" disabled={isLoading} className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
             {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Send"}
           </Button>
         </form>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

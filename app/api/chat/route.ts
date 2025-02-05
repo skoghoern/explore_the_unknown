@@ -1,6 +1,11 @@
 import { mistral } from "@ai-sdk/mistral";
 import { streamText } from "ai";
 
+interface Message {
+  role: string;
+  content: string;
+}
+
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
@@ -24,7 +29,7 @@ export async function POST(req: Request) {
           }
           Important: Always structure your response as a brief answer followed by valid JSON.`,
         },
-        ...messages.map((msg) => ({
+        ...messages.map((msg: Message) => ({
           role: msg.role,
           content: msg.content,
         })),

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import BackgroundPaths from "@/components/background-paths";
+import BackgroundPaths from "@/components/kokonutui/background-paths";
 import Image from "next/image";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";

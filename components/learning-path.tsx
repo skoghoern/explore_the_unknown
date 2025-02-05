@@ -1,22 +1,26 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ChevronRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ChevronRight } from "lucide-react";
 
 interface LearningStep {
-  title: string
-  description: string
-  resources: string[]
+  title: string;
+  description: string;
+  resources: string[];
 }
 
 interface LearningPathData {
-  topic: string
-  steps: LearningStep[]
+  topic: string;
+  steps: LearningStep[];
 }
 
-export default function LearningPath({ path }: { path: LearningPathData | null }) {
+export default function LearningPath({
+  path,
+}: {
+  path: LearningPathData | null;
+}) {
   if (!path) {
     return (
       <Card className="w-full bg-gray-900 border-gray-800">
@@ -24,10 +28,12 @@ export default function LearningPath({ path }: { path: LearningPathData | null }
           <CardTitle className="text-white">Your Learning Journey</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-400">Start chatting to get personalized learning suggestions!</p>
+          <p className="text-gray-400">
+            Start chatting to get personalized learning suggestions!
+          </p>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -54,14 +60,21 @@ export default function LearningPath({ path }: { path: LearningPathData | null }
                 {index + 1}
               </div>
               <div className="space-y-2">
-                <h3 className="font-semibold text-lg text-white">{step.title}</h3>
+                <h3 className="font-semibold text-lg text-white">
+                  {step.title}
+                </h3>
                 <p className="text-sm text-gray-400">{step.description}</p>
                 {step.resources.length > 0 && (
                   <div className="space-y-1">
-                    <p className="text-xs font-medium text-gray-500">Recommended Resources:</p>
+                    <p className="text-xs font-medium text-gray-500">
+                      Recommended Resources:
+                    </p>
                     <ul className="space-y-1">
                       {step.resources.map((resource, resourceIndex) => (
-                        <li key={resourceIndex} className="text-sm flex items-center gap-1 text-blue-400">
+                        <li
+                          key={resourceIndex}
+                          className="text-sm flex items-center gap-1 text-blue-400"
+                        >
                           <ChevronRight className="w-3 h-3" />
                           {resource}
                         </li>
@@ -75,6 +88,5 @@ export default function LearningPath({ path }: { path: LearningPathData | null }
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-
