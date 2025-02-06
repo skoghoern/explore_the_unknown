@@ -3,6 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { Toaster } from "sonner";
 import "./globals.css";
 import type React from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Toaster />
         </div>
+        <Analytics />
       </body>
     </html>
   );
