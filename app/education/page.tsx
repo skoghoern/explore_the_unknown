@@ -85,23 +85,41 @@ export default function EducationPage() {
         body: JSON.stringify({ conversation: conversationText }),
       });
 
+      if (!res.ok) {
+        console.error(
+          `Analyze API error: Status ${res.status} ${res.statusText}`
+        );
+        throw new Error("Analyze API request failed");
+      }
+
       const fullContent = await res.text();
+      console.log("Analysis raw response:", fullContent);
+
       // Split the response based on the LEARNINGPATH marker for robust parsing.
       const parts = fullContent.split("LEARNINGPATH:");
       if (parts.length < 2) {
+        console.error(
+          "Response did not contain LEARNINGPATH marker. Full response:",
+          fullContent
+        );
         throw new Error("Learning path marker not found");
       }
       const userInfoStr = parts[0].replace("USERINFO:", "").trim();
       const learningPathStr = parts[1].trim();
+
+      console.log("Extracted USERINFO JSON string:", userInfoStr);
+      console.log("Extracted LEARNINGPATH JSON string:", learningPathStr);
 
       // Parse both JSON strings.
       const userInfoData: UserInfo = JSON.parse(userInfoStr);
       const pathData: LearningPathData = JSON.parse(learningPathStr);
 
       setUserInfo(userInfoData);
+
       if (pathData.topic && Array.isArray(pathData.steps)) {
         setLearningPath(pathData);
       } else {
+        console.error("Parsed learning path structure is invalid:", pathData);
         throw new Error("Invalid learning path structure");
       }
     } catch (error) {
