@@ -13,6 +13,17 @@ interface UserInfo {
   knowledge: string;
 }
 
+interface LearningStep {
+  title: string;
+  description: string;
+  resources: string[];
+}
+
+interface LearningPathData {
+  topic: string;
+  steps: LearningStep[];
+}
+
 function UserInfoDisplay({ userInfo }: { userInfo: UserInfo | null }) {
   return (
     <Card className="w-full bg-gray-900 border-gray-800">
@@ -39,7 +50,9 @@ function UserInfoDisplay({ userInfo }: { userInfo: UserInfo | null }) {
 }
 
 export default function EducationPage() {
-  const [learningPath, setLearningPath] = useState<any>(null);
+  const [learningPath, setLearningPath] = useState<LearningPathData | null>(
+    null
+  );
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [activeScreen, setActiveScreen] = useState(0); // 0 => UserInfo, 1 => LearningPath
   const [analysisLoading, setAnalysisLoading] = useState(false);
@@ -87,7 +100,7 @@ export default function EducationPage() {
           .trim();
 
         const userInfoData: UserInfo = JSON.parse(userInfoStr);
-        const pathData = JSON.parse(learningPathStr);
+        const pathData: LearningPathData = JSON.parse(learningPathStr);
 
         setUserInfo(userInfoData);
         if (pathData.topic && Array.isArray(pathData.steps)) {
