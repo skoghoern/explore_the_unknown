@@ -86,32 +86,23 @@ export default function EducationPage() {
       });
 
       const fullContent = await res.text();
-      const marker = "LEARNINGPATH:";
-      const markerIndex = fullContent.indexOf(marker);
-      if (markerIndex !== -1) {
-        // Parse the JSON object for USERINFO.
-        const userInfoStr = fullContent
-          .slice(0, markerIndex)
-          .replace("USERINFO:", "")
-          .trim();
-        // Read the learning path JSON.
-        const learningPathStr = fullContent
-          .slice(markerIndex + marker.length)
-          .trim();
+      // Split the response based on the LEARNINGPATH marker for robust parsing.
+      const parts = fullContent.split("LEARNINGPATH:");
+      if (parts.length < 2) {
+        throw new Error("Learning path marker not found");
+      }
+      const userInfoStr = parts[0].replace("USERINFO:", "").trim();
+      const learningPathStr = parts[1].trim();
 
-        const userInfoData: UserInfo = JSON.parse(userInfoStr);
-        const pathData: LearningPathData = JSON.parse(learningPathStr);
+      // Parse both JSON strings.
+      const userInfoData: UserInfo = JSON.parse(userInfoStr);
+      const pathData: LearningPathData = JSON.parse(learningPathStr);
 
-        setUserInfo(userInfoData);
-        if (pathData.topic && Array.isArray(pathData.steps)) {
-          setLearningPath(pathData);
-        } else {
-          throw new Error("Invalid learning path structure");
-        }
+      setUserInfo(userInfoData);
+      if (pathData.topic && Array.isArray(pathData.steps)) {
+        setLearningPath(pathData);
       } else {
-        // Fallback in case the learning path marker is missing.
-        setUserInfo(null);
-        setLearningPath(null);
+        throw new Error("Invalid learning path structure");
       }
     } catch (error) {
       console.error("Failed to analyze conversation:", error);
