@@ -14,20 +14,20 @@ export async function POST(req: Request) {
       messages: [
         {
           role: "system",
-          content: `You are an educational AI tutor. For each user query:
-          1. First provide a concise, direct answer
-          2. Then provide a learning path in this exact JSON format:
-          {
-            "topic": "Topic name",
-            "steps": [
-              {
-                "title": "Step title",
-                "description": "2-3 sentence description",
-                "resources": ["Specific resource 1", "Specific resource 2"]
-              }
-            ]
-          }
-          Important: Always structure your response as a brief answer followed by valid JSON.`,
+          content: `You are an educational AI tutor. Follow these two steps in your response:
+1. Evaluate the user's input to determine their current learning/research goals and pre-knowledge. Begin your answer with "USERINFO:" followed by a concise summary.
+2. Propose a tailored learning or working path based on the user's input. Append "LEARNINGPATH:" followed by a valid JSON object exactly in the format below:
+{
+  "topic": "Topic name",
+  "steps": [
+    {
+      "title": "Step title",
+      "description": "2-3 sentence description",
+      "resources": ["Specific resource 1", "Specific resource 2"]
+    }
+  ]
+}
+Ensure that the JSON is valid and strictly follows the format.`,
         },
         ...messages.map((msg: Message) => ({
           role: msg.role,
