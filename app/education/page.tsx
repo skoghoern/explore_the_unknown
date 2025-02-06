@@ -8,25 +8,39 @@ import LearningPath from "@/components/learning-path";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
-function UserInfoDisplay({ userInfo }: { userInfo: string }) {
+interface UserInfo {
+  goals: string;
+  knowledge: string;
+}
+
+function UserInfoDisplay({ userInfo }: { userInfo: UserInfo | null }) {
   return (
     <Card className="w-full bg-gray-900 border-gray-800">
       <CardHeader>
-        <CardTitle className="text-white">Your Goals &amp; Knowledge</CardTitle>
+        <CardTitle className="text-white">Your Dashboard</CardTitle>
       </CardHeader>
-      <CardContent>
-        <p className="text-gray-400">
-          {userInfo ||
-            "We haven't analyzed your conversation yet. Start chatting, then click 'Analyze Conversation'."}
-        </p>
+      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 className="text-lg font-bold text-white">Goals</h3>
+          <p className="text-gray-400">
+            {userInfo?.goals || "No goals information available."}
+          </p>
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-white">Current Knowledge</h3>
+          <p className="text-gray-400">
+            {userInfo?.knowledge ||
+              "No current knowledge information available."}
+          </p>
+        </div>
       </CardContent>
     </Card>
   );
 }
 
 export default function EducationPage() {
-  const [learningPath, setLearningPath] = useState(null);
-  const [userInfo, setUserInfo] = useState("");
+  const [learningPath, setLearningPath] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [activeScreen, setActiveScreen] = useState(0); // 0 => UserInfo, 1 => LearningPath
   const [analysisLoading, setAnalysisLoading] = useState(false);
 
@@ -34,9 +48,8 @@ export default function EducationPage() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       api: "/api/chat",
-      onFinish: (message) => {
-        // For conversation, we are simply appending the message.
-        // We no longer expect a unified analysis response here.
+      onFinish: () => {
+        // Conversation messages are handled by the chat API.
       },
       onError: (error) => {
         console.error("Chat error:", error);
@@ -63,22 +76,28 @@ export default function EducationPage() {
       const marker = "LEARNINGPATH:";
       const markerIndex = fullContent.indexOf(marker);
       if (markerIndex !== -1) {
-        const userInfoText = fullContent
+        // Parse the JSON object for USERINFO.
+        const userInfoStr = fullContent
           .slice(0, markerIndex)
           .replace("USERINFO:", "")
           .trim();
-        const jsonStr = fullContent.slice(markerIndex + marker.length).trim();
-        const pathData = JSON.parse(jsonStr);
+        // Read the learning path JSON.
+        const learningPathStr = fullContent
+          .slice(markerIndex + marker.length)
+          .trim();
 
-        setUserInfo(userInfoText);
+        const userInfoData: UserInfo = JSON.parse(userInfoStr);
+        const pathData = JSON.parse(learningPathStr);
+
+        setUserInfo(userInfoData);
         if (pathData.topic && Array.isArray(pathData.steps)) {
           setLearningPath(pathData);
         } else {
           throw new Error("Invalid learning path structure");
         }
       } else {
-        // Fallback in case the marker is missing.
-        setUserInfo(fullContent);
+        // Fallback in case the learning path marker is missing.
+        setUserInfo(null);
         setLearningPath(null);
       }
     } catch (error) {

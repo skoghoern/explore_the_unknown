@@ -6,8 +6,12 @@ export async function POST(req: Request) {
     const { conversation } = await req.json();
 
     const systemPrompt = `You are an educational AI tutor. Based on the following conversation between the user and the AI tutor, follow these two steps:
-1. Evaluate the user's input to determine their current learning/research goals and pre-knowledge. Begin your answer with "USERINFO:" followed by a concise summary.
-2. Propose a tailored learning or working path based on the user's conversation. Append "LEARNINGPATH:" followed by a valid JSON object exactly in the format below:
+1. Evaluate the user's input to determine their current learning/research goals and pre-knowledge. Immediately output a JSON object after "USERINFO:" exactly in the following format:
+{
+  "goals": "User's primary learning or research goals",
+  "knowledge": "A summary of the user's current pre-knowledge in the subject"
+}
+2. Propose a tailored learning or working path based on the user's conversation. Immediately after "LEARNINGPATH:" output a valid JSON object exactly in the format below:
 {
   "topic": "Topic name",
   "steps": [
@@ -18,7 +22,7 @@ export async function POST(req: Request) {
     }
   ]
 }
-Ensure that the JSON is valid and strictly follows the format.
+Ensure that both JSON objects are valid and strictly follow the formats.
 Conversation:
 ${conversation}`;
 
@@ -34,9 +38,7 @@ ${conversation}`;
       JSON.stringify({ error: "Failed to process analysis request" }),
       {
         status: 500,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       }
     );
   }
