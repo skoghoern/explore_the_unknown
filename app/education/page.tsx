@@ -124,7 +124,9 @@ export default function EducationPage() {
       }
     } catch (error) {
       console.error("Failed to analyze conversation:", error);
-      toast.error("Failed to analyze conversation. Please try again.");
+      toast.error(
+        `Failed to analyze conversation: ${error}. Please try again.`
+      );
     }
     setAnalysisLoading(false);
   };
