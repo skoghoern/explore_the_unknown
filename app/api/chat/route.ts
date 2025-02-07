@@ -8,6 +8,12 @@ interface Message {
 
 export async function POST(req: Request) {
   const apiKey = process.env.MISTRAL_API_KEY;
+
+  if (process.env.NODE_ENV === "development") {
+    // Use the apiKey in development if needed
+    console.log("API Key for development:", apiKey);
+  }
+
   try {
     const { messages } = await req.json();
     const result = streamText({
