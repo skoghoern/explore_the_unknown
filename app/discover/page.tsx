@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Accordion,
   AccordionItem,
@@ -12,13 +12,29 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { FaChevronLeft, FaChevronRight, FaArrowRight } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaArrowRight,
+  FaPaperPlane,
+  FaMicroscope,
+  FaFolder,
+  FaBullseye,
+  FaStar,
+  FaGraduationCap,
+  FaMicrophone,
+} from "react-icons/fa";
 import { useChat } from "ai/react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 function MainComponent() {
   const [isFirstMessage, setIsFirstMessage] = useState<boolean>(true);
   const [isChatVisible, setIsChatVisible] = useState<boolean>(true);
-  const [isProfileExpanded, setIsProfileExpanded] = useState<boolean>(true);
 
   const {
     messages: aiMessages,
@@ -49,26 +65,27 @@ function MainComponent() {
       <div className="h-[calc(100vh-4rem)] w-full flex flex-col items-center justify-center bg-gradient-to-b from-[#121212] to-[#1a1a1a]">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-white mb-2 font-roboto">
-            Welcome to ResearchHub
+            Welcome to your Discovery Mentor
           </h1>
           <p className="text-gray-300 font-roboto">
-            Your personal assistant for research and collaboration
+            Your personal assistant for learning, research and collaboration
           </p>
         </div>
         <form
           onSubmit={handleFirstMessageSubmit}
           className="w-[600px] max-w-[90%]"
         >
-          <div className="relative">
+          <div className="relative flex items-center">
+            <FaMicrophone className="absolute left-2 text-gray-400" />
             <Input
               value={input}
               onChange={handleInputChange}
-              className="w-full p-6 text-lg bg-[#2d2d2d] text-white border-[#3d3d3d] rounded-lg"
-              placeholder="Describe your research interest..."
+              className="w-full p-6 text-lg bg-[#2d2d2d] text-white border-[#3d3d3d] rounded-lg pl-10"
+              placeholder="Describe your field of interest..."
             />
             <Button
               type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#3d3d3d] hover:bg-[#4d4d4d] rounded-full"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-200 rounded-full"
             >
               <span>Start</span>
               <FaArrowRight className="ml-2" />
@@ -85,10 +102,29 @@ function MainComponent() {
   return (
     <div className="h-[calc(100vh-4rem)] w-full flex relative bg-[#121212] overflow-hidden">
       <div className="absolute top-4 right-4 z-50">
-        <Avatar>
-          <AvatarImage src="/avatar.png" alt="@max" className="filter invert" />
-          <AvatarFallback>Mad Max</AvatarFallback>
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar>
+              <AvatarImage
+                src="/avatar.png"
+                alt="@max"
+                className="filter invert"
+              />
+              <AvatarFallback>Mad Max</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onClick={() => console.log("Profile clicked")}>
+              Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log("Settings clicked")}>
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log("Logout clicked")}>
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div
         className={`${chatWidth} h-[calc(100vh-4rem)] bg-[#1e1e1e] flex flex-col overflow-hidden transition-all duration-500 ease-in-out transform ${
@@ -120,20 +156,23 @@ function MainComponent() {
         </div>
         <div className="p-4 border-t border-[#2d2d2d] bg-[#1a1a1a]">
           <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Write a message..."
-              className="bg-[#3b3b3b] text-white border-[#4b4b4b] rounded-lg"
-            />
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="bg-[#4b4b4b] hover:bg-[#5b5b5b]"
-            >
-              <span>Send</span>
-              <i className="fas fa-paper-plane ml-2"></i>
-            </Button>
+            <div className="relative flex items-center w-full">
+              <FaMicrophone className="absolute left-2 text-gray-400" />
+              <Input
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Write a message..."
+                className="bg-[#3b3b3b] text-white border-[#4b4b4b] rounded-lg pl-10 flex-grow"
+              />
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-white hover:bg-gray-200"
+              >
+                <span>Send</span>
+                <FaPaperPlane className="ml-2" />
+              </Button>
+            </div>
           </form>
         </div>
       </div>
@@ -242,7 +281,7 @@ function MainComponent() {
                         key={topic}
                         className="flex items-center space-x-2 text-gray-400"
                       >
-                        <i className="fas fa-microscope text-gray-400"></i>
+                        <FaMicroscope className="text-gray-400" />
                         <span className="font-roboto">{topic}</span>
                       </li>
                     ))}
@@ -251,15 +290,15 @@ function MainComponent() {
               </div>
             </TabsContent>
 
-            <TabsContent value="collaboration">
-              <div className="p-4 space-y-4 max-h-[calc(100vh-20rem)] overflow-y-auto">
+            <TabsContent value="collaboration" className="flex flex-col h-full">
+              <div className="flex-1 p-4 space-y-4 overflow-y-auto">
                 {[1, 2, 3].map((project) => (
                   <div
                     key={project}
                     className="bg-[#2d2d2d] rounded-lg shadow-sm p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
                   >
                     <div className="flex items-center space-x-4 flex-grow">
-                      <i className="fas fa-folder text-3xl text-gray-300"></i>
+                      <FaFolder className="text-3xl text-gray-300" />
                       <div className="min-w-0">
                         <h3 className="font-roboto font-semibold text-lg truncate text-white">
                           Material Intelligence

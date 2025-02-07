@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, BookOpen, Users, FolderGit2 } from "lucide-react";
+import { Home, Users, FolderGit2 } from "lucide-react";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -15,8 +15,8 @@ export function Navigation() {
       icon: Home,
     },
     {
-      href: "/explorer",
-      label: "Explorer",
+      href: "/discover",
+      label: "Discover",
       icon: FolderGit2,
     },
     {
