@@ -19,9 +19,6 @@ import {
   FaPaperPlane,
   FaMicroscope,
   FaFolder,
-  FaBullseye,
-  FaStar,
-  FaGraduationCap,
   FaMicrophone,
 } from "react-icons/fa";
 import { useChat } from "ai/react";
