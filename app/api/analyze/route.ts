@@ -2,7 +2,7 @@ import { mistral } from "@ai-sdk/mistral";
 import { streamText } from "ai";
 
 export async function POST(req: Request) {
-  //const apiKey = process.env.MISTRAL_API_KEY;
+  //only defined for development usage. deployment version automatically uses vercel env
   let apiKey: string | undefined;
   if (process.env.NODE_ENV === "development") {
     apiKey = process.env.MISTRAL_API_KEY;

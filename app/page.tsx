@@ -14,7 +14,7 @@ export default function HomePage() {
           that empowers interdisciplinary innovation and knowledge sharing
         </p>
         <div className="mt-8">
-          <Link href="/education" passHref>
+          <Link href="/explorer" passHref>
             <Button
               size="lg"
               className="px-8 py-3 font-medium bg-green-600 hover:bg-green-700 text-white"

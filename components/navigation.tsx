@@ -15,14 +15,9 @@ export function Navigation() {
       icon: Home,
     },
     {
-      href: "/research",
-      label: "Research",
+      href: "/explorer",
+      label: "Explorer",
       icon: FolderGit2,
-    },
-    {
-      href: "/education",
-      label: "Education",
-      icon: BookOpen,
     },
     {
       href: "/team",
