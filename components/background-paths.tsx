@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function BackgroundPaths({ title }: { title: string }) {
   return (
-    <div className="relative h-[30vh] bg-black overflow-hidden">
+    <div className="relative h-[5vh] bg-black overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

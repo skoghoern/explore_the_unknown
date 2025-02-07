@@ -11,49 +11,50 @@ export default function HomePage() {
         </h1>
         <p className="mt-6 text-xl md:text-2xl max-w-2xl mx-auto text-gray-400">
           A collaborative development platform for open, decentralized science
-          that empowers innovation and knowledge sharing.
+          that empowers interdisciplinary innovation and knowledge sharing
         </p>
+        <div className="mt-8">
+          <Link href="/education" passHref>
+            <Button
+              size="lg"
+              className="px-8 py-3 font-medium bg-green-600 hover:bg-green-700 text-white"
+            >
+              Begin Your Knowledge Journey →
+            </Button>
+          </Link>
+        </div>
       </header>
 
       {/* Main Content */}
       <main className="flex-grow px-4 md:px-8">
-        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2">
-          {/* Research Path Card */}
-          <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
-            <h2 className="text-3xl font-semibold mb-4">Research</h2>
-            <p className="text-lg text-gray-300 mb-6">
-              Our autonomous active inference agent explores published research,
-              constructs its own knowledge, and identifies groundbreaking paths.
-              Discover solutions that address enigmatic diseases, unveil new
-              medicines, and pioneer sustainable energy innovations.
-            </p>
-            <Link href="/research" passHref>
-              <Button
-                size="lg"
-                className="px-8 py-3 font-medium bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Enter Research Lab →
-              </Button>
-            </Link>
-          </div>
-
-          {/* Education Path Card */}
+        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-3">
+          {/* Education Card */}
           <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-3xl font-semibold mb-4">Education</h2>
             <p className="text-lg text-gray-300 mb-6">
-              Let us guide you on a tailored learning journey. By understanding
-              your background, preferences, and goals, we eliminate uncertainty
-              and chart the most effective path to reach your academic and
-              professional aspirations.
+              Leveraging active inference and AI-assisted analysis, we craft
+              personalized learning journeys. Our platform tailors educational
+              pathways to your background, goals, and evolving interests.
             </p>
-            <Link href="/education" passHref>
-              <Button
-                size="lg"
-                className="px-8 py-3 font-medium bg-green-600 hover:bg-green-700 text-white"
-              >
-                Begin Your Journey →
-              </Button>
-            </Link>
+          </div>
+          {/* Research Card */}
+          <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
+            <h2 className="text-3xl font-semibold mb-4">Research</h2>
+            <p className="text-lg text-gray-300 mb-6">
+              Our Intelligence Discovery Engine autonomously builds a world
+              model from published research, identifying dynamic trends and
+              uncovering hidden insights across diverse scientific fields.
+            </p>
+          </div>
+          {/* Collaboration Card */}
+          <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
+            <h2 className="text-3xl font-semibold mb-4">Collaboration</h2>
+            <p className="text-lg text-gray-300 mb-6">
+              Our platform fosters a vibrant collaborative space where
+              researchers, educators, and innovators connect. Engage with a
+              diverse community to drive cutting-edge projects and share
+              breakthrough ideas.
+            </p>
           </div>
         </div>
       </main>

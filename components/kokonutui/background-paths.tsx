@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export default function BackgroundPaths({ title }: { title: string }) {
   return (
-    <div className="relative h-[50vh] bg-black overflow-hidden">
+    <div className="relative h-[20vh] bg-black overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute inset-0 flex items-center justify-center text-white text-5xl sm:text-6xl md:text-7xl font-bold text-center px-4"
+        className="absolute inset-0 flex items-center justify-center text-white text-xl sm:text-2xl md:text-5xl font-bold text-center px-4"
       >
         {title}
       </motion.div>
