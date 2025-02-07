@@ -7,6 +7,7 @@ interface Message {
 }
 
 export async function POST(req: Request) {
+  const apiKey = process.env.MISTRAL_API_KEY;
   try {
     const { messages } = await req.json();
     const result = streamText({

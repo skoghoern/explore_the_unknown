@@ -102,7 +102,9 @@ export default function EducationPage() {
           "Response did not contain LEARNINGPATH marker. Full response:",
           fullContent
         );
-        throw new Error("Learning path marker not found");
+        throw new Error(
+          `Learning path marker not found. Full response: ${fullContent}`
+        );
       }
       const userInfoStr = parts[0].replace("USERINFO:", "").trim();
       const learningPathStr = parts[1].trim();

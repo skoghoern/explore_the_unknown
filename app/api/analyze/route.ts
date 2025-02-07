@@ -2,6 +2,7 @@ import { mistral } from "@ai-sdk/mistral";
 import { streamText } from "ai";
 
 export async function POST(req: Request) {
+  const apiKey = process.env.MISTRAL_API_KEY;
   try {
     const { conversation } = await req.json();
 
