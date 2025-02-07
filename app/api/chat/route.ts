@@ -7,10 +7,10 @@ interface Message {
 }
 
 export async function POST(req: Request) {
-  const apiKey = process.env.MISTRAL_API_KEY;
-
+  //const apiKey = process.env.MISTRAL_API_KEY;
+  let apiKey: string | undefined;
   if (process.env.NODE_ENV === "development") {
-    // Use the apiKey in development if needed
+    apiKey = process.env.MISTRAL_API_KEY;
     console.log("API Key for development:", apiKey);
   }
 
