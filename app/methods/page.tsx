@@ -44,6 +44,18 @@ export default function MethodsPage() {
         {/* Introduction */}
         <section className="mb-16">
           <p className="text-gray-300 mb-6">
+            Exploring Unknown Together is a collaborative engine for
+            accelerating discovery in science and, more broadly, in any field
+            pushing the boundaries of scientific understanding, learning process
+            and building collaborations. We&apos;re moving beyond traditional,
+            siloed research practices and embracing a dynamic, interconnected
+            approach where human insight and AI power work in synergy. We are
+            building a platform that empowers to actively pursue the research
+            goals or learn new research fields or topics. This paradigm shift is
+            particularly crucial for tackling complex, interdisciplinary
+            challenges like the development of cognizant matter.
+          </p>
+          <p className="text-gray-300 mb-6">
             Our methodology combines active inference with AI to create a unique
             discovery process. Unlike traditional chat solutions, we use cluster
             analysis to contextualize user requests and represent them as
@@ -53,7 +65,7 @@ export default function MethodsPage() {
           </p>
 
           <div
-            className="relative float-left w-full md:w-1/2 h-[600px] rounded-lg overflow-hidden cursor-pointer mr-4 mb-4"
+            className="relative float-left w-full md:w-1/2 h-[320px] rounded-lg overflow-hidden cursor-pointer mr-4 mb-4"
             onClick={() => setIsModalOpen(true)}
           >
             <Image
@@ -155,18 +167,13 @@ export default function MethodsPage() {
               </div>
             </div>
             <p className="text-gray-300 mb-6">
-              This interconnected approach reveals crucial links between:
+              This interconnected approach reveals crucial links between Finance
+              and Business Administration; Biodiversity, Ecological, and Climate
+              Studies; Renewable Energy; Social Inclusivity and Respect for
+              Indigenous Peoples; Policy Impact Assessment (data
+              collection/analysis, A/B testing); and Economic Theory and
+              Ethics/Philosophy.
             </p>
-            <ul className="list-disc list-inside text-gray-300 mb-6 space-y-2">
-              <li>Finance and Business Administration</li>
-              <li>Biodiversity, Ecological, and Climate Studies</li>
-              <li>Renewable Energy</li>
-              <li>Social Inclusivity and Respect for Indigenous Peoples</li>
-              <li>
-                Policy Impact Assessment (data collection/analysis, A/B testing)
-              </li>
-              <li>Economic Theory and Ethics/Philosophy</li>
-            </ul>
             <p className="text-gray-300">
               The user can then explore these connections further, guided by our
               platform&apos;s internet search and reasoning capabilities. This
