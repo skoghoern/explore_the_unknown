@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Users, FolderGit2, BookOpen, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Home, Users, FolderGit2, BookOpen, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function Navigation() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
 
   const routes = [
     {
@@ -77,7 +75,6 @@ export function Navigation() {
                   <Link
                     key={route.href}
                     href={route.href}
-                    onClick={() => setIsOpen(false)}
                     className={cn(
                       "flex items-center text-lg transition-colors hover:text-blue-400",
                       pathname === route.href

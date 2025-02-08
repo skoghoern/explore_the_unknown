@@ -37,15 +37,8 @@ import {
   RadialBarChart,
   RadialBar,
   PolarAngleAxis,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
   Tooltip,
   ResponsiveContainer,
-  LineChart,
-  Line,
-  Treemap,
   Radar,
   RadarChart,
   PolarGrid,
@@ -62,6 +55,13 @@ function MainComponent() {
   const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
   const [expandedGoal, setExpandedGoal] = useState<string | null>(null);
 
+  // Add interface for Goal type
+  interface Goal {
+    id: string;
+    name: string;
+    progress: number;
+    subgoals?: Goal[];
+  }
   const {
     messages: aiMessages,
     input,
@@ -186,7 +186,7 @@ function MainComponent() {
     { subject: "Research Methods", A: 95, fullMark: 100 },
   ];
 
-  const renderGoalTree = (goals: any[], depth = 0) => {
+  const renderGoalTree = (goals: Goal[], depth = 0) => {
     return goals.map((goal) => (
       <motion.div
         key={goal.id}

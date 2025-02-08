@@ -73,9 +73,9 @@ export default function MethodsPage() {
                 </h4>
                 <p className="text-gray-300">
                   We begin by understanding your unique intentions - whether
-                  they're learning objectives, research goals, or collaboration
-                  interests. Our system builds an internal model of your
-                  background, expertise, and aspirations through active
+                  they&apos;re learning objectives, research goals, or
+                  collaboration interests. Our system builds an internal model
+                  of your background, expertise, and aspirations through active
                   inference.
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function MethodsPage() {
                 Community Integration
               </h3>
               <p className="text-gray-300 mb-6">
-                We're developing meeting and event infrastructure that
+                We&apos;re developing meeting and event infrastructure that
                 integrates generative AI methods with community engagement and
                 collaborative learning.
               </p>
@@ -193,7 +193,7 @@ export default function MethodsPage() {
               Active Inference Onboarding
             </h3>
             <p className="text-gray-300 mb-6">
-              We're continuously developing Active Inference onboarding
+              We&apos;re continuously developing Active Inference onboarding
               materials and transferable methods for practitioners from all
               languages and backgrounds.
             </p>
