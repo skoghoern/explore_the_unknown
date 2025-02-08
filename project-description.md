@@ -3,12 +3,18 @@
     AI-assisted knowledge discovery in a collaborative space.
     A collaborative development platform for open, decentralized science that empowers interdisciplinary innovation and knowledge sharing
 
-This AI system shifts from attention-based to intention-based interaction, where users co-create personalised experiences in real time. The backend is a discovery engine based on generative AI and active inference agency. The front end dynamically adapts based on user intent and feedback.
-The "Active Inference" angle/outlook we have involves agency rather than passivity; tailoring exploratory and collaboratory avenues guided by user questions, expressed preferences, and feedback rather than a passive feed.
+This AI system shifts from attention-based to intention-based interaction, where users co-create personalised experiences in real time. The backend is a discovery engine based on generative AI and active inference agency. The front end dynamically adapts based on user intent and feedback helping the user to achieve their desired goal.
 
-1. backend: intelligence discovery engine. this is autonomously building an understanding of the world (world model) based on published research.
+1. backend: intelligence discovery engine. this is autonomously building an understanding of the world (world model) based on published research. making connections between otherwise disparate information -- using BERT, LLMs, etc. for finding topics and connections between scientific and disciplinary material for interdisciplinary exploration
 
-2. frontend: companion engine. which explores the users interests and preknowledge. it connects users and assists them on their learning/career/research path based on the world model (backend) and the information about what other users are currently doing/thriving for, current projects. fostering collaboration and personally optimized learning paths.
+2. frontend: companion engine.
+   uses active inference scheme to explore the user, their goals and preknowledge. based on the attained "internal model" of the user, the world model constructed in the intelligence discovery engine (step 1) and the knowledge about other users and open/current projects the algortihm offers ways to introduce the user to fields, educational resources and research topics related to their goals for exploring them further. it helps the user to find their best learning and research path. fostering collaboration and personally optimized learning paths.
+   Through the "Active Inference" angle/outlook we have involved agency rather than passivity; tailoring exploratory and collaboratory avenues guided by user questions, expressed preferences, and feedback rather than a passive feed.
+
+**Process Distinction from Traditional Chat Solutions**
+To distinguish our platform from conventional chat solutions, we employ a unique process that begins with user input. This input undergoes cluster analysis, which contextualizes the user's request. The context and all relevant elements are represented as embedding vectors, with calculated distances that inform the system's understanding. The Active Inference Framework (AIF) algorithm then determines the optimal path to the user's desired target. This central process allows for the convergence of either a personalized learning path or the development of methodologies for new discoveries.
+
+In this framework, large language models (LLMs) are utilized solely for generating embeddings and interpreting user intentions. Importantly, the paths provided are not hallucinated; they are derived through a consistent minimization of uncertainty, ensuring a reliable and targeted approach to knowledge discovery.
 
 **Problem statement**
 _ The accelerating volume of scientific literature makes it increasingly difficult for researchers to stay current, identify key trends, and discover novel connections across disciplines, hindering scientific progress and innovation.
