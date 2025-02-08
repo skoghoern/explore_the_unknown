@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import DiscoveryMentorVisualization from "@/components/discovery-mentor-visualization";
 
 export default function HomePage() {
   return (
@@ -62,34 +62,16 @@ export default function HomePage() {
 
       {/* Methods Section */}
       <section className="bg-gray-900 py-16 px-4 mt-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left">
-              <h2 className="text-4xl font-bold mb-8">Our Methods</h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Discover how we combine active inference principles with
-                cutting-edge AI to create a revolutionary platform for
-                scientific discovery and learning.
-              </p>
-              <Link href="/methods" passHref>
-                <Button
-                  size="lg"
-                  className="px-8 py-3 font-medium bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  Explore Our Methodology →
-                </Button>
-              </Link>
-            </div>
-            <div className="relative w-full h-[300px] rounded-lg overflow-hidden">
-              <Image
-                src="/short_workflow_discovery_mentor.jpg"
-                alt="Discovery Mentor Workflow"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto text-center">
+          <DiscoveryMentorVisualization />
+          <Link href="/methods" passHref>
+            <Button
+              size="lg"
+              className="mt-8 px-8 py-3 font-medium bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Explore Our Methodology →
+            </Button>
+          </Link>
         </div>
       </section>
 

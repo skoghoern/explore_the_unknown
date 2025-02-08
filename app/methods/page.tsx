@@ -123,6 +123,59 @@ export default function MethodsPage() {
           <div className="clear-both"></div>
         </section>
 
+        {/* Example Passage */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-semibold mb-6">
+            Real-World Application Example
+          </h2>
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8">
+            <p className="text-gray-300 mb-6">
+              Consider a user aiming to establish a sustainable business plan.
+              Our system, leveraging its knowledge graph, begins by reading
+              articles biased towards this goal. It identifies and connects
+              seemingly disparate fields, creating a holistic view of the
+              challenges and opportunities.
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="relative w-full h-64">
+                <Image
+                  src="/sustainable_business_plan_overview.png"
+                  alt="Knowledge Graph overview"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative w-full h-64">
+                <Image
+                  src="/sustainable_business_plan_detail.png"
+                  alt="Knowledge Graph detail"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <p className="text-gray-300 mb-6">
+              This interconnected approach reveals crucial links between:
+            </p>
+            <ul className="list-disc list-inside text-gray-300 mb-6 space-y-2">
+              <li>Finance and Business Administration</li>
+              <li>Biodiversity, Ecological, and Climate Studies</li>
+              <li>Renewable Energy</li>
+              <li>Social Inclusivity and Respect for Indigenous Peoples</li>
+              <li>
+                Policy Impact Assessment (data collection/analysis, A/B testing)
+              </li>
+              <li>Economic Theory and Ethics/Philosophy</li>
+            </ul>
+            <p className="text-gray-300">
+              The user can then explore these connections further, guided by our
+              platform&apos;s internet search and reasoning capabilities. This
+              exemplifies how our methodology aligns current research priorities
+              with the need for interdisciplinary discovery.
+            </p>
+          </div>
+        </section>
+
         {/* Key Components */}
         <section className="mb-16">
           <h2 className="text-3xl font-semibold mb-6">Key Components</h2>
@@ -173,7 +226,7 @@ export default function MethodsPage() {
 
         {/* Video Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-semibold mb-6">Project Overview</h2>
+          <h2 className="text-3xl font-semibold mb-6">Project Development</h2>
           <div className="aspect-video w-full md:w-1/2 mx-auto bg-gray-800/50 backdrop-blur-sm rounded-lg p-4">
             <iframe
               className="w-full h-full rounded-lg"
