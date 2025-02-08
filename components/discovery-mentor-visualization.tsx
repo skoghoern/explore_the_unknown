@@ -7,7 +7,7 @@ import Image from "next/image";
 const paths = [
   {
     id: "learning",
-    title: "Learning Path",
+    title: "Learning",
     description: "Personalized educational journey",
     color: "from-purple-500/20 to-red-500/20",
     activeColor: "from-purple-500 to-red-500",
@@ -15,7 +15,7 @@ const paths = [
   },
   {
     id: "discovery",
-    title: "Discovery Path",
+    title: "Discovery",
     description: "Explore unknown territories",
     color: "from-blue-500/20 to-green-500/20",
     activeColor: "from-blue-500 to-green-500",
@@ -23,7 +23,7 @@ const paths = [
   },
   {
     id: "collaboration",
-    title: "Collaboration Path",
+    title: "Collaboration",
     description: "Connect with others",
     color: "from-yellow-500/20 to-orange-500/20",
     activeColor: "from-yellow-500 to-orange-500",
@@ -170,9 +170,11 @@ export default function DiscoveryMentorVisualization() {
                 transition={{ delay: 1.5 + index * 0.2 }}
               >
                 <motion.div
-                  className={`w-80 rounded-lg bg-gradient-to-br ${
-                    isActive ? path.activeColor : path.color
-                  } p-[1px] cursor-pointer transition-all duration-300`}
+                  className={`w-80 rounded-lg ${
+                    isActive
+                      ? "border-2 border-white"
+                      : "border border-white/20"
+                  } cursor-pointer transition-all duration-300`}
                   whileHover={{ scale: 1.02, y: -5 }}
                   onClick={() => setActivePath(path.id)}
                 >
