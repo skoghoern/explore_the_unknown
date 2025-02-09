@@ -11,7 +11,7 @@ const paths = [
     description: "Personalized educational journey",
     color: "from-purple-500/20 to-red-500/20",
     activeColor: "from-purple-500 to-red-500",
-    image: "/learning_workflow.png",
+    image: "/learning_workflow-modules.png",
   },
   {
     id: "discovery",

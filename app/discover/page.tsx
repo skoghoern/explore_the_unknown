@@ -54,6 +54,7 @@ function MainComponent() {
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
   const [expandedGoal, setExpandedGoal] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   // Add interface for Goal type
   interface Goal {
@@ -291,6 +292,7 @@ function MainComponent() {
 
   return (
     <div className="h-[calc(100vh-4rem)] w-full relative bg-[#121212] overflow-hidden">
+      {/* Avatar Symbol */}
       <div className="absolute top-4 right-4 z-50">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -317,7 +319,9 @@ function MainComponent() {
         </DropdownMenu>
       </div>
 
+      {/* Panel view */}
       <ResizablePanelGroup direction="horizontal" className="h-full">
+        {/* Left/chat Panel */}
         <ResizablePanel
           defaultSize={50}
           minSize={0}
@@ -380,13 +384,15 @@ function MainComponent() {
           </div>
         </ResizablePanel>
 
+        {/* Middle line */}
         <ResizableHandle
           withHandle
           className="bg-[#2d2d2d] hover:bg-[#3d3d3d] transition-colors"
         />
 
+        {/* Right Panel */}
         <ResizablePanel defaultSize={isChatVisible ? 50 : 100}>
-          <div className="h-full bg-[#1e1e1e] p-6 flex flex-col gap-6">
+          <div className="h-full bg-[#1e1e1e] flex flex-col">
             {!isChatVisible && (
               <Button
                 onClick={() => setIsChatVisible(!isChatVisible)}
@@ -396,533 +402,714 @@ function MainComponent() {
                 <FaChevronRight className="text-white" />
               </Button>
             )}
-            <Accordion type="multiple">
-              <AccordionItem value="profile-overview">
-                <AccordionTrigger>Profile Overview</AccordionTrigger>
-                <AccordionContent>
-                  <Tabs>
-                    <TabsList>
-                      <TabsTrigger value="goals">Goals</TabsTrigger>
-                      <TabsTrigger value="knowledge">Skills</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="goals">
-                      <div className="space-y-4 p-4 max-h-[calc(100vh-20rem)] overflow-y-auto">
-                        <div className="border border-[#2d2d2d] rounded-lg p-4">
-                          <h3 className="font-roboto font-semibold text-gray-300 mb-4 sticky top-0 bg-[#1a1a1a] py-2 z-10">
-                            Learning Goals
-                          </h3>
-                          <div className="space-y-2">
-                            {renderGoalTree(goalsData)}
-                          </div>
-                        </div>
-                      </div>
-                    </TabsContent>
-                    <TabsContent value="knowledge">
-                      <div className="p-4 space-y-4 max-h-[calc(100vh-20rem)] overflow-y-auto">
-                        <div className="border border-[#2d2d2d] rounded-lg p-4">
-                          <h3 className="font-roboto font-semibold text-gray-300 mb-4 sticky top-0 bg-[#1a1a1a] py-2 z-10">
-                            Skills Overview
-                          </h3>
-                          <div className="h-[300px]">
-                            <ResponsiveContainer width="100%" height="100%">
-                              <RadarChart data={skillsData}>
-                                <PolarGrid stroke="#3d3d3d" />
-                                <PolarAngleAxis
-                                  dataKey="subject"
-                                  tick={{ fill: "#9ca3af" }}
-                                />
-                                <PolarRadiusAxis stroke="#6b7280" />
-                                <Radar
-                                  name="Skills"
-                                  dataKey="A"
-                                  stroke="#4f46e5"
-                                  fill="#4f46e5"
-                                  fillOpacity={0.3}
-                                />
-                                <Tooltip
-                                  contentStyle={{
-                                    backgroundColor: "#2d2d2d",
-                                    border: "none",
-                                    borderRadius: "8px",
-                                    color: "#fff",
-                                  }}
-                                />
-                              </RadarChart>
-                            </ResponsiveContainer>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 pb-4">
-                          {skillsData.map((skill) => (
-                            <motion.div
-                              key={skill.subject}
-                              className="p-3 bg-[#1a1a1a] rounded-lg border border-[#2d2d2d]"
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="font-roboto text-gray-300">
-                                  {skill.subject}
-                                </span>
-                                <Badge
-                                  variant="secondary"
-                                  className="bg-[#4f46e5]"
-                                >
-                                  {skill.A}%
-                                </Badge>
-                              </div>
-                              <div className="relative w-full h-2 bg-[#3d3d3d] rounded-full overflow-hidden">
-                                <motion.div
-                                  className="absolute top-0 left-0 h-full bg-[#4f46e5]"
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${skill.A}%` }}
-                                  transition={{ duration: 1, ease: "easeOut" }}
-                                />
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
 
-            <div className="flex-1 bg-[#1a1a1a] rounded-lg shadow-lg overflow-y-auto border border-[#2d2d2d]">
-              <Tabs>
-                <TabsList>
-                  <TabsTrigger value="learning">Learning Path</TabsTrigger>
-                  <TabsTrigger value="research">Research Topics</TabsTrigger>
-                  <TabsTrigger value="collaboration">Collaboration</TabsTrigger>
-                </TabsList>
+            {/* Browser-style tabs navigation */}
+            <div className="flex flex-col h-full">
+              <Tabs
+                defaultValue="profile"
+                className="w-full h-full"
+                value={isProjectModalOpen ? "project" : undefined}
+                onValueChange={(value) => {
+                  if (value !== "project") {
+                    setIsProjectModalOpen(false);
+                    setSelectedProject(null);
+                  }
+                }}
+              >
+                <div className="border-b border-[#2d2d2d] bg-[#1a1a1a] px-4 py-2">
+                  <TabsList className="bg-[#2d2d2d]">
+                    <TabsTrigger
+                      value="profile"
+                      className="data-[state=active]:bg-[#3d3d3d]"
+                    >
+                      Profile Overview
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="discover"
+                      className="data-[state=active]:bg-[#3d3d3d]"
+                    >
+                      Discover
+                    </TabsTrigger>
+                    {isProjectModalOpen && selectedProject && (
+                      <TabsTrigger
+                        value="project"
+                        className="data-[state=active]:bg-[#3d3d3d] group relative max-w-[200px]"
+                      >
+                        <span className="truncate">
+                          {selectedProject.title}
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="ml-2 h-5 w-5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity absolute right-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsProjectModalOpen(false);
+                            setSelectedProject(null);
+                          }}
+                        >
+                          ×
+                        </Button>
+                      </TabsTrigger>
+                    )}
+                  </TabsList>
+                </div>
 
-                <TabsContent value="learning">
-                  <div className="p-4 space-y-6">
-                    <div className="border border-[#2d2d2d] rounded-lg p-4">
-                      <h3 className="font-roboto font-semibold mb-4 text-gray-300">
-                        Learning Path Steps
-                      </h3>
-                      <div className="space-y-4">
-                        {[
-                          "Fundamentals",
-                          "Advanced Concepts",
-                          "Practical Applications",
-                          "Expert Level",
-                        ].map((step, index) => (
-                          <motion.div
-                            key={step}
-                            className={`p-4 rounded-lg cursor-pointer transition-colors ${
-                              selectedStep === index
-                                ? "bg-[#3d3d3d] border-[#4f46e5] border"
-                                : "bg-[#2d2d2d] hover:bg-[#3d3d3d]"
-                            }`}
-                            onClick={() => setSelectedStep(index)}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                {/* Main content area with improved scrolling */}
+                <div className="flex-1 overflow-hidden">
+                  <TabsContent
+                    value="profile"
+                    className="h-full overflow-hidden flex flex-col"
+                  >
+                    {/* Sub-tabs with improved styling */}
+                    <div className="border-b border-[#2d2d2d] bg-[#1a1a1a] px-4">
+                      <Tabs defaultValue="goals" className="w-full h-full">
+                        <TabsList className="bg-transparent h-12">
+                          <TabsTrigger
+                            value="goals"
+                            className="data-[state=active]:bg-[#2d2d2d]"
                           >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-3">
-                                <div
-                                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                    selectedStep === index
-                                      ? "bg-[#4f46e5]"
-                                      : "bg-[#3d3d3d]"
-                                  }`}
-                                >
-                                  {index + 1}
+                            Goals
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="knowledge"
+                            className="data-[state=active]:bg-[#2d2d2d]"
+                          >
+                            Skills
+                          </TabsTrigger>
+                        </TabsList>
+                        <div className="flex-1 overflow-hidden">
+                          <div className="h-[calc(100vh-12rem)] overflow-y-auto">
+                            <TabsContent value="goals" className="mt-0 p-6">
+                              <div className="space-y-4">
+                                <div className="border border-[#2d2d2d] rounded-lg p-4">
+                                  <h3 className="font-roboto font-semibold text-gray-300 mb-4 sticky top-0 bg-[#1a1a1a] py-2 z-10">
+                                    Learning Goals
+                                  </h3>
+                                  <div className="space-y-2">
+                                    {renderGoalTree(goalsData)}
+                                  </div>
                                 </div>
-                                <span className="font-roboto text-gray-300">
-                                  {step}
-                                </span>
                               </div>
-                              <Badge
-                                variant="secondary"
-                                className={
-                                  selectedStep === index
-                                    ? "bg-[#4f46e5] text-white"
-                                    : "bg-[#3d3d3d]"
-                                }
-                              >
-                                {index === 3 ? "Final" : "In Progress"}
-                              </Badge>
-                              <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="ml-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 border-red-500/20"
-                                  >
-                                    Get Help
-                                  </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="bg-[#2d2d2d] border-[#3d3d3d]">
-                                  <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
-                                    Help me motivate
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
-                                    Change step
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
-                                    Find relatable people
-                                  </DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
+                            </TabsContent>
+                            <TabsContent value="knowledge" className="mt-0 p-6">
+                              <div className="space-y-4">
+                                <div className="border border-[#2d2d2d] rounded-lg p-4">
+                                  <h3 className="font-roboto font-semibold text-gray-300 mb-4 sticky top-0 bg-[#1a1a1a] py-2 z-10">
+                                    Skills Overview
+                                  </h3>
+                                  <div className="h-[300px]">
+                                    <ResponsiveContainer
+                                      width="100%"
+                                      height="100%"
+                                    >
+                                      <RadarChart data={skillsData}>
+                                        <PolarGrid stroke="#3d3d3d" />
+                                        <PolarAngleAxis
+                                          dataKey="subject"
+                                          tick={{ fill: "#9ca3af" }}
+                                        />
+                                        <PolarRadiusAxis stroke="#6b7280" />
+                                        <Radar
+                                          name="Skills"
+                                          dataKey="A"
+                                          stroke="#4f46e5"
+                                          fill="#4f46e5"
+                                          fillOpacity={0.3}
+                                        />
+                                        <Tooltip
+                                          contentStyle={{
+                                            backgroundColor: "#2d2d2d",
+                                            border: "none",
+                                            borderRadius: "8px",
+                                            color: "#fff",
+                                          }}
+                                        />
+                                      </RadarChart>
+                                    </ResponsiveContainer>
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 pb-4">
+                                  {skillsData.map((skill) => (
+                                    <motion.div
+                                      key={skill.subject}
+                                      className="p-3 bg-[#1a1a1a] rounded-lg border border-[#2d2d2d]"
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                    >
+                                      <div className="flex items-center justify-between mb-2">
+                                        <span className="font-roboto text-gray-300">
+                                          {skill.subject}
+                                        </span>
+                                        <Badge
+                                          variant="secondary"
+                                          className="bg-[#4f46e5]"
+                                        >
+                                          {skill.A}%
+                                        </Badge>
+                                      </div>
+                                      <div className="relative w-full h-2 bg-[#3d3d3d] rounded-full overflow-hidden">
+                                        <motion.div
+                                          className="absolute top-0 left-0 h-full bg-[#4f46e5]"
+                                          initial={{ width: 0 }}
+                                          animate={{ width: `${skill.A}%` }}
+                                          transition={{
+                                            duration: 1,
+                                            ease: "easeOut",
+                                          }}
+                                        />
+                                      </div>
+                                    </motion.div>
+                                  ))}
+                                </div>
+                              </div>
+                            </TabsContent>
+                          </div>
+                        </div>
+                      </Tabs>
                     </div>
-                  </div>
-                </TabsContent>
+                  </TabsContent>
 
-                <TabsContent value="research">
-                  <div className="p-4 space-y-6">
-                    {researchTopicsData.map((topic, index) => (
-                      <motion.div
-                        key={topic.id}
-                        className={`border border-[#2d2d2d] rounded-lg p-4 ${
-                          selectedTopic === index
-                            ? "bg-[#2d2d2d]"
-                            : "bg-[#1a1a1a]"
-                        }`}
-                        onClick={() => setSelectedTopic(index)}
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                      >
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h3 className="font-roboto font-semibold text-gray-300 mb-2">
-                              {topic.topic}
-                            </h3>
-                            <p className="text-gray-400 text-sm">
-                              {topic.description}
-                            </p>
-                          </div>
-                          <div className="flex items-center">
-                            <div className="w-16 h-16">
-                              <RadialBarChart
-                                width={64}
-                                height={64}
-                                cx={32}
-                                cy={32}
-                                innerRadius="65%"
-                                outerRadius="100%"
-                                data={[
-                                  { value: topic.relevance, fill: "#4f46e5" },
-                                ]}
-                                startAngle={90}
-                                endAngle={-270}
-                              >
-                                <PolarAngleAxis
-                                  type="number"
-                                  domain={[0, 100]}
-                                  angleAxisId={0}
-                                  tick={false}
-                                />
-                                <RadialBar
-                                  background
-                                  dataKey="value"
-                                  cornerRadius={30}
-                                />
-                              </RadialBarChart>
-                              <div className="text-center mt-1">
-                                <span className="text-sm text-gray-300">
-                                  {topic.relevance}%
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {selectedTopic === index && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="mt-4"
+                  <TabsContent
+                    value="discover"
+                    className="h-full overflow-hidden flex flex-col"
+                  >
+                    <div className="border-b border-[#2d2d2d] bg-[#1a1a1a] px-4">
+                      <Tabs defaultValue="learning" className="w-full h-full">
+                        <TabsList className="bg-transparent h-12">
+                          <TabsTrigger
+                            value="learning"
+                            className="data-[state=active]:bg-[#2d2d2d]"
                           >
-                            <h4 className="font-roboto text-sm text-gray-400 mb-2">
-                              Concept Relationships & Exploration Path
-                            </h4>
-                            <div className="relative h-[300px] bg-[#1a1a1a] rounded-lg p-4">
-                              <svg
-                                width="100%"
-                                height="100%"
-                                viewBox="0 0 800 300"
-                              >
-                                {/* Define gradients */}
-                                <defs>
-                                  <linearGradient
-                                    id="pathGradient"
-                                    x1="0%"
-                                    y1="0%"
-                                    x2="100%"
-                                    y2="0%"
+                            Learning Path
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="research"
+                            className="data-[state=active]:bg-[#2d2d2d]"
+                          >
+                            Research Topics
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="collaboration"
+                            className="data-[state=active]:bg-[#2d2d2d]"
+                          >
+                            Collaboration
+                          </TabsTrigger>
+                        </TabsList>
+                        <div className="flex-1 overflow-hidden">
+                          <div className="h-[calc(100vh-12rem)] overflow-y-auto">
+                            <TabsContent value="learning" className="mt-0 p-6">
+                              <div className="p-4 space-y-6">
+                                <div className="border border-[#2d2d2d] rounded-lg p-4">
+                                  <h3 className="font-roboto font-semibold mb-4 text-gray-300">
+                                    Learning Path Steps
+                                  </h3>
+                                  <div className="space-y-4">
+                                    {[
+                                      "Fundamentals",
+                                      "Advanced Concepts",
+                                      "Practical Applications",
+                                      "Expert Level",
+                                    ].map((step, index) => (
+                                      <motion.div
+                                        key={step}
+                                        className={`p-4 rounded-lg cursor-pointer transition-colors ${
+                                          selectedStep === index
+                                            ? "bg-[#3d3d3d] border-[#4f46e5] border"
+                                            : "bg-[#2d2d2d] hover:bg-[#3d3d3d]"
+                                        }`}
+                                        onClick={() => setSelectedStep(index)}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                      >
+                                        <div className="flex items-center justify-between">
+                                          <div className="flex items-center space-x-3">
+                                            <div
+                                              className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                                selectedStep === index
+                                                  ? "bg-[#4f46e5]"
+                                                  : "bg-[#3d3d3d]"
+                                              }`}
+                                            >
+                                              {index + 1}
+                                            </div>
+                                            <span className="font-roboto text-gray-300">
+                                              {step}
+                                            </span>
+                                          </div>
+                                          <Badge
+                                            variant="secondary"
+                                            className={
+                                              selectedStep === index
+                                                ? "bg-[#4f46e5] text-white"
+                                                : "bg-[#3d3d3d]"
+                                            }
+                                          >
+                                            {index === 3
+                                              ? "Final"
+                                              : "In Progress"}
+                                          </Badge>
+                                          <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                              <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="ml-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 border-red-500/20"
+                                              >
+                                                Get Help
+                                              </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent className="bg-[#2d2d2d] border-[#3d3d3d]">
+                                              <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
+                                                Help me motivate
+                                              </DropdownMenuItem>
+                                              <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
+                                                Change step
+                                              </DropdownMenuItem>
+                                              <DropdownMenuItem className="text-gray-300 hover:bg-[#3d3d3d] cursor-pointer">
+                                                Find relatable people
+                                              </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                          </DropdownMenu>
+                                        </div>
+                                      </motion.div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </TabsContent>
+
+                            <TabsContent value="research" className="mt-0 p-6">
+                              <div className="p-4 space-y-6">
+                                {researchTopicsData.map((topic, index) => (
+                                  <motion.div
+                                    key={topic.id}
+                                    className={`border border-[#2d2d2d] rounded-lg p-4 ${
+                                      selectedTopic === index
+                                        ? "bg-[#2d2d2d]"
+                                        : "bg-[#1a1a1a]"
+                                    }`}
+                                    onClick={() =>
+                                      setSelectedTopic(
+                                        selectedTopic === index ? null : index
+                                      )
+                                    }
+                                    whileHover={{ scale: 1.01 }}
+                                    whileTap={{ scale: 0.99 }}
                                   >
-                                    <stop
-                                      offset="0%"
-                                      stopColor="#4f46e5"
-                                      stopOpacity="0.8"
-                                    />
-                                    <stop
-                                      offset="100%"
-                                      stopColor="#22c55e"
-                                      stopOpacity="0.8"
-                                    />
-                                  </linearGradient>
-                                </defs>
+                                    <div className="flex justify-between items-start mb-4">
+                                      <div>
+                                        <h3 className="font-roboto font-semibold text-gray-300 mb-2">
+                                          {topic.topic}
+                                        </h3>
+                                        <p className="text-gray-400 text-sm">
+                                          {topic.description}
+                                        </p>
+                                      </div>
+                                      <div className="flex items-center">
+                                        <div className="w-16 h-16">
+                                          <RadialBarChart
+                                            width={64}
+                                            height={64}
+                                            cx={32}
+                                            cy={32}
+                                            innerRadius="65%"
+                                            outerRadius="100%"
+                                            data={[
+                                              {
+                                                value: topic.relevance,
+                                                fill: "#4f46e5",
+                                              },
+                                            ]}
+                                            startAngle={90}
+                                            endAngle={-270}
+                                          >
+                                            <PolarAngleAxis
+                                              type="number"
+                                              domain={[0, 100]}
+                                              angleAxisId={0}
+                                              tick={false}
+                                            />
+                                            <RadialBar
+                                              background
+                                              dataKey="value"
+                                              cornerRadius={30}
+                                            />
+                                          </RadialBarChart>
+                                          <div className="text-center mt-1">
+                                            <span className="text-sm text-gray-300">
+                                              {topic.relevance}%
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
 
-                                {/* Connection paths */}
-                                <path
-                                  d="M 200,150 C 300,150 350,100 450,100"
-                                  stroke="#3d3d3d"
-                                  strokeWidth="2"
-                                  fill="none"
-                                />
-                                <path
-                                  d="M 200,150 C 300,150 350,200 450,200"
-                                  stroke="#3d3d3d"
-                                  strokeWidth="2"
-                                  fill="none"
-                                />
+                                    {selectedTopic === index && (
+                                      <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="mt-4"
+                                      >
+                                        <h4 className="font-roboto text-sm text-gray-400 mb-2">
+                                          Concept Relationships & Exploration
+                                          Path
+                                        </h4>
+                                        <div className="relative h-[300px] bg-[#1a1a1a] rounded-lg p-4">
+                                          <svg
+                                            width="100%"
+                                            height="100%"
+                                            viewBox="0 0 800 300"
+                                          >
+                                            {/* Define gradients */}
+                                            <defs>
+                                              <linearGradient
+                                                id="pathGradient"
+                                                x1="0%"
+                                                y1="0%"
+                                                x2="100%"
+                                                y2="0%"
+                                              >
+                                                <stop
+                                                  offset="0%"
+                                                  stopColor="#4f46e5"
+                                                  stopOpacity="0.8"
+                                                />
+                                                <stop
+                                                  offset="100%"
+                                                  stopColor="#22c55e"
+                                                  stopOpacity="0.8"
+                                                />
+                                              </linearGradient>
+                                            </defs>
 
-                                {/* Exploration path */}
-                                <path
-                                  d="M 200,150 C 300,150 350,150 450,150 C 550,150 600,100 650,100"
-                                  stroke="url(#pathGradient)"
-                                  strokeWidth="3"
-                                  fill="none"
-                                  strokeDasharray="5,5"
-                                />
+                                            {/* Connection paths */}
+                                            <path
+                                              d="M 200,150 C 300,150 350,100 450,100"
+                                              stroke="#3d3d3d"
+                                              strokeWidth="2"
+                                              fill="none"
+                                            />
+                                            <path
+                                              d="M 200,150 C 300,150 350,200 450,200"
+                                              stroke="#3d3d3d"
+                                              strokeWidth="2"
+                                              fill="none"
+                                            />
 
-                                {/* Current concept */}
-                                <circle
-                                  cx="200"
-                                  cy="150"
-                                  r="40"
-                                  fill="#4f46e5"
-                                  opacity="0.8"
-                                />
-                                <text
-                                  x="200"
-                                  y="150"
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontSize="12"
-                                >
-                                  Current Topic
-                                </text>
+                                            {/* Exploration path */}
+                                            <path
+                                              d="M 200,150 C 300,150 350,150 450,150 C 550,150 600,100 650,100"
+                                              stroke="url(#pathGradient)"
+                                              strokeWidth="3"
+                                              fill="none"
+                                              strokeDasharray="5,5"
+                                            />
 
-                                {/* Related concepts */}
-                                <circle
-                                  cx="450"
-                                  cy="100"
-                                  r="30"
-                                  fill="#6366f1"
-                                  opacity="0.6"
-                                />
-                                <text
-                                  x="450"
-                                  y="100"
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontSize="12"
-                                >
-                                  Related 1
-                                </text>
+                                            {/* Current concept */}
+                                            <circle
+                                              cx="200"
+                                              cy="150"
+                                              r="40"
+                                              fill="#4f46e5"
+                                              opacity="0.8"
+                                            />
+                                            <text
+                                              x="200"
+                                              y="150"
+                                              textAnchor="middle"
+                                              fill="white"
+                                              fontSize="12"
+                                            >
+                                              Current Topic
+                                            </text>
 
-                                <circle
-                                  cx="450"
-                                  cy="200"
-                                  r="30"
-                                  fill="#6366f1"
-                                  opacity="0.6"
-                                />
-                                <text
-                                  x="450"
-                                  y="200"
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontSize="12"
-                                >
-                                  Related 2
-                                </text>
+                                            {/* Related concepts */}
+                                            <circle
+                                              cx="450"
+                                              cy="100"
+                                              r="30"
+                                              fill="#6366f1"
+                                              opacity="0.6"
+                                            />
+                                            <text
+                                              x="450"
+                                              y="100"
+                                              textAnchor="middle"
+                                              fill="white"
+                                              fontSize="12"
+                                            >
+                                              Related 1
+                                            </text>
 
-                                {/* Unexplored area */}
-                                <circle
-                                  cx="650"
-                                  cy="100"
-                                  r="35"
-                                  fill="#22c55e"
-                                  opacity="0.8"
-                                />
-                                <text
-                                  x="650"
-                                  y="95"
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontSize="12"
-                                >
-                                  Unexplored
-                                </text>
-                                <text
-                                  x="650"
-                                  y="110"
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontSize="10"
-                                >
-                                  Area
-                                </text>
-                              </svg>
+                                            <circle
+                                              cx="450"
+                                              cy="200"
+                                              r="30"
+                                              fill="#6366f1"
+                                              opacity="0.6"
+                                            />
+                                            <text
+                                              x="450"
+                                              y="200"
+                                              textAnchor="middle"
+                                              fill="white"
+                                              fontSize="12"
+                                            >
+                                              Related 2
+                                            </text>
 
-                              {/* Steps legend */}
-                              <div className="absolute bottom-4 left-4 bg-[#2d2d2d] p-3 rounded-lg">
-                                <h5 className="text-sm font-semibold text-gray-300 mb-2">
-                                  Exploration Steps:
-                                </h5>
-                                <ol className="text-xs text-gray-400 space-y-1 list-decimal list-inside">
-                                  <li>Review current knowledge base</li>
-                                  <li>Connect with related concepts</li>
-                                  <li>Identify knowledge gaps</li>
-                                  <li>Plan research methodology</li>
-                                </ol>
+                                            {/* Unexplored area */}
+                                            <circle
+                                              cx="650"
+                                              cy="100"
+                                              r="35"
+                                              fill="#22c55e"
+                                              opacity="0.8"
+                                            />
+                                            <text
+                                              x="650"
+                                              y="95"
+                                              textAnchor="middle"
+                                              fill="white"
+                                              fontSize="12"
+                                            >
+                                              Unexplored
+                                            </text>
+                                            <text
+                                              x="650"
+                                              y="110"
+                                              textAnchor="middle"
+                                              fill="white"
+                                              fontSize="10"
+                                            >
+                                              Area
+                                            </text>
+                                          </svg>
+
+                                          {/* Steps legend */}
+                                          <div className="absolute bottom-4 left-4 bg-[#2d2d2d] p-3 rounded-lg">
+                                            <h5 className="text-sm font-semibold text-gray-300 mb-2">
+                                              Exploration Steps:
+                                            </h5>
+                                            <ol className="text-xs text-gray-400 space-y-1 list-decimal list-inside">
+                                              <li>
+                                                Review current knowledge base
+                                              </li>
+                                              <li>
+                                                Connect with related concepts
+                                              </li>
+                                              <li>Identify knowledge gaps</li>
+                                              <li>Plan research methodology</li>
+                                            </ol>
+                                          </div>
+                                        </div>
+                                      </motion.div>
+                                    )}
+                                  </motion.div>
+                                ))}
                               </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                </TabsContent>
+                            </TabsContent>
 
-                <TabsContent
-                  value="collaboration"
-                  className="flex flex-col h-full"
-                >
-                  <div className="flex-1 p-4 space-y-4 overflow-y-auto">
-                    {[1, 2, 3].map((project) => (
-                      <div
-                        key={project}
-                        className="bg-[#2d2d2d] rounded-lg shadow-sm p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
-                      >
-                        <div className="flex items-center space-x-4 flex-grow">
-                          <FaFolder className="text-3xl text-gray-300" />
-                          <div className="min-w-0">
-                            <h3 className="font-roboto font-semibold text-lg truncate text-white">
-                              Material Intelligence
-                            </h3>
-                            <div className="flex items-center space-x-2 text-sm text-gray-400">
-                              <span>8 Collaborators</span>
-                              <span>•</span>
-                              <span>Active</span>
-                            </div>
-                            <div className="mt-2 flex flex-wrap gap-2">
-                              {[
-                                "Materials Science",
-                                "AI",
-                                "Sustainability",
-                              ].map((tag) => (
-                                <Badge
-                                  key={tag}
-                                  variant="secondary"
-                                  className="bg-[#3d3d3d] text-gray-300"
-                                >
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 self-end md:self-center">
-                          <div className="flex -space-x-3 items-center">
-                            {[1, 2, 3].map((avatar) => (
-                              <Avatar
-                                key={avatar}
-                                className="border-2 border-[#1e1e1e] w-8 h-8 transition-transform hover:translate-y-[-2px]"
-                              >
-                                <AvatarImage
-                                  src={`/avatar${avatar}.png`}
-                                  alt={`Team Member ${avatar}`}
-                                />
-                                <AvatarFallback
-                                  className="text-xs text-white"
-                                  style={{
-                                    backgroundColor:
-                                      avatar === 1
-                                        ? "#4f46e5" // indigo
-                                        : avatar === 2
-                                        ? "#0891b2" // cyan
-                                        : "#7c3aed", // purple
-                                  }}
-                                >
-                                  TM{avatar}
-                                </AvatarFallback>
-                              </Avatar>
-                            ))}
-                            <div className="bg-gray-600 text-white text-xs rounded-full w-8 h-8 flex items-center justify-center border-2 border-[#1e1e1e] translate-x-1">
-                              +5
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-4">
-                            <div className="text-center">
-                              <div className="relative w-16 h-16">
-                                {" "}
-                                {/* Increased size */}
-                                <RadialBarChart
-                                  width={64} // Increased width
-                                  height={64} // Increased height
-                                  cx={32} // Adjusted center x
-                                  cy={32} // Adjusted center y
-                                  innerRadius="65%"
-                                  outerRadius="100%"
-                                  data={matchData}
-                                  startAngle={90}
-                                  endAngle={-270}
-                                >
-                                  <PolarAngleAxis
-                                    type="number"
-                                    domain={[0, 100]}
-                                    angleAxisId={0}
-                                    tick={false}
-                                  />
-                                  <RadialBar
-                                    background
-                                    dataKey="value"
-                                    cornerRadius={30}
-                                    fill="#22c55e"
-                                  />
-                                </RadialBarChart>
-                              </div>
-                              <div className="mt-1 flex flex-col items-center">
-                                <span className="font-roboto font-bold text-gray-300 text-sm">
-                                  85%
-                                </span>
-                                <span className="text-xs text-gray-400">
-                                  Match
-                                </span>
-                              </div>
-                            </div>
-
-                            <Button
-                              variant="secondary"
-                              onClick={() => setIsProjectModalOpen(true)}
+                            <TabsContent
+                              value="collaboration"
+                              className="mt-0 p-6"
                             >
-                              Open
-                            </Button>
-                            <ProjectOverviewModal
-                              isOpen={isProjectModalOpen}
-                              onOpenChange={setIsProjectModalOpen}
-                            />
+                              <div className="space-y-4">
+                                {[
+                                  {
+                                    id: 1,
+                                    title: "Material Intelligence",
+                                    description:
+                                      "Advancing materials science through AI and machine learning",
+                                    collaborators: 8,
+                                    status: "Active",
+                                    tags: [
+                                      "Materials Science",
+                                      "AI",
+                                      "Sustainability",
+                                    ],
+                                    match: 85,
+                                    matchColor: "#22c55e",
+                                  },
+                                  {
+                                    id: 2,
+                                    title: "Quantum Computing Research",
+                                    description:
+                                      "Exploring quantum algorithms for material simulations",
+                                    collaborators: 6,
+                                    status: "Active",
+                                    tags: [
+                                      "Quantum Computing",
+                                      "Algorithms",
+                                      "Simulation",
+                                    ],
+                                    match: 92,
+                                    matchColor: "#4f46e5",
+                                  },
+                                  {
+                                    id: 3,
+                                    title: "Green Energy Solutions",
+                                    description:
+                                      "Developing sustainable energy storage technologies",
+                                    collaborators: 12,
+                                    status: "Active",
+                                    tags: [
+                                      "Energy",
+                                      "Sustainability",
+                                      "Innovation",
+                                    ],
+                                    match: 78,
+                                    matchColor: "#0891b2",
+                                  },
+                                ].map((project) => (
+                                  <div
+                                    key={project.id}
+                                    className="bg-[#2d2d2d] rounded-lg shadow-sm p-4"
+                                  >
+                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                      <div className="flex items-center space-x-4 min-w-0 flex-1">
+                                        <FaFolder className="text-3xl text-gray-300 flex-shrink-0" />
+                                        <div className="min-w-0 flex-1">
+                                          <h3 className="font-roboto font-semibold text-lg truncate text-white">
+                                            {project.title}
+                                          </h3>
+                                          <div className="flex items-center space-x-2 text-sm text-gray-400">
+                                            <span>
+                                              {project.collaborators}{" "}
+                                              Collaborators
+                                            </span>
+                                            <span>•</span>
+                                            <span>{project.status}</span>
+                                          </div>
+                                          <div className="mt-2 flex flex-wrap gap-2">
+                                            {project.tags.map((tag) => (
+                                              <Badge
+                                                key={tag}
+                                                variant="secondary"
+                                                className="bg-[#3d3d3d] text-gray-300"
+                                              >
+                                                {tag}
+                                              </Badge>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      {/* Add collaborator avatars */}
+                                      <div className="hidden lg:flex -space-x-3 items-center mx-4">
+                                        {[1, 2, 3].map((avatar) => (
+                                          <Avatar
+                                            key={avatar}
+                                            className="border-2 border-[#2d2d2d] w-8 h-8 transition-transform hover:translate-y-[-2px]"
+                                          >
+                                            <AvatarImage
+                                              src={`/avatar${avatar}.png`}
+                                              alt={`Team Member ${avatar}`}
+                                            />
+                                            <AvatarFallback
+                                              className="text-xs text-white"
+                                              style={{
+                                                backgroundColor:
+                                                  avatar === 1
+                                                    ? project.matchColor
+                                                    : avatar === 2
+                                                    ? "#0891b2"
+                                                    : "#7c3aed",
+                                              }}
+                                            >
+                                              TM{avatar}
+                                            </AvatarFallback>
+                                          </Avatar>
+                                        ))}
+                                        {project.collaborators > 3 && (
+                                          <div className="bg-gray-600 text-white text-xs rounded-full w-8 h-8 flex items-center justify-center border-2 border-[#2d2d2d] translate-x-1">
+                                            +{project.collaborators - 3}
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      <div className="flex items-center gap-4">
+                                        <div className="text-center">
+                                          <div className="relative w-16 h-16">
+                                            <RadialBarChart
+                                              width={64}
+                                              height={64}
+                                              cx={32}
+                                              cy={32}
+                                              innerRadius="65%"
+                                              outerRadius="100%"
+                                              data={[{ value: project.match }]}
+                                              startAngle={90}
+                                              endAngle={-270}
+                                            >
+                                              <PolarAngleAxis
+                                                type="number"
+                                                domain={[0, 100]}
+                                                angleAxisId={0}
+                                                tick={false}
+                                              />
+                                              <RadialBar
+                                                background
+                                                dataKey="value"
+                                                cornerRadius={30}
+                                                fill={project.matchColor}
+                                              />
+                                            </RadialBarChart>
+                                          </div>
+                                          <div className="mt-1 flex flex-col items-center">
+                                            <span className="font-roboto font-bold text-gray-300 text-sm">
+                                              {project.match}%
+                                            </span>
+                                            <span className="text-xs text-gray-400">
+                                              Match
+                                            </span>
+                                          </div>
+                                        </div>
+
+                                        <Button
+                                          variant="secondary"
+                                          onClick={() => {
+                                            setSelectedProject(project);
+                                            setIsProjectModalOpen(true);
+                                          }}
+                                        >
+                                          Open
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </TabsContent>
                           </div>
                         </div>
+                      </Tabs>
+                    </div>
+                  </TabsContent>
+
+                  {isProjectModalOpen && (
+                    <TabsContent
+                      value="project"
+                      className="h-full overflow-hidden"
+                    >
+                      <div className="h-[calc(100vh-12rem)] overflow-y-auto p-6">
+                        <ProjectOverviewModal
+                          isOpen={true}
+                          project={selectedProject}
+                          onOpenChange={(open) => {
+                            if (!open) {
+                              setIsProjectModalOpen(false);
+                              setSelectedProject(null);
+                            }
+                          }}
+                        />
                       </div>
-                    ))}
-                  </div>
-                </TabsContent>
+                    </TabsContent>
+                  )}
+                </div>
               </Tabs>
             </div>
           </div>
