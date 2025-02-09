@@ -1,13 +1,6 @@
 "use client";
 
 import React from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -37,8 +30,6 @@ interface ProjectOverviewModalProps {
 }
 
 export function ProjectOverviewModal({
-  isOpen,
-  onOpenChange,
   project = {
     title: "Material Intelligence Research Project",
     description: "Advancing materials science through AI and machine learning",

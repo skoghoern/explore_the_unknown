@@ -4,12 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -86,14 +80,6 @@ function MainComponent() {
       setIsFirstMessage(false);
     }, 300);
   };
-
-  const matchData = [
-    {
-      name: "Match",
-      value: 85,
-      fill: "#22c55e", // green-500
-    },
-  ];
 
   const researchTopicsData = [
     {
