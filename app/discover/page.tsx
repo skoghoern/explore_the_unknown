@@ -41,6 +41,18 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { ProjectOverviewModal } from "@/components/project-overview-modal";
 
+// Define a Project interface with all the properties used in the Collaboration section
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  collaborators: number;
+  status: string;
+  tags: string[];
+  match: number;
+  matchColor: string;
+}
+
 function MainComponent() {
   const [isFirstMessage, setIsFirstMessage] = useState<boolean>(true);
   const [isChatVisible, setIsChatVisible] = useState<boolean>(true);
@@ -48,7 +60,7 @@ function MainComponent() {
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
   const [expandedGoal, setExpandedGoal] = useState<string | null>(null);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Add interface for Goal type
   interface Goal {
@@ -1084,7 +1096,7 @@ function MainComponent() {
                       <div className="h-[calc(100vh-12rem)] overflow-y-auto p-6">
                         <ProjectOverviewModal
                           isOpen={true}
-                          project={selectedProject}
+                          project={selectedProject ?? undefined}
                           onOpenChange={(open) => {
                             if (!open) {
                               setIsProjectModalOpen(false);

@@ -42,9 +42,10 @@ export default function HomePage() {
           <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-3xl font-semibold mb-4">Research</h2>
             <p className="text-lg text-gray-300 mb-6">
-              Our Intelligence Discovery Engine autonomously builds a world
-              model from published research, identifying dynamic trends and
-              uncovering hidden insights across diverse scientific fields.
+              Educational pathways are tailored to your background, goals and
+              evolving interests. We craft personalized learning journeys
+              through AI assisted analysis that combines active inference, Large
+              Language models, and cluster analysis.
             </p>
           </div>
           {/* Collaboration Card */}
