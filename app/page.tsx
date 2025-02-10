@@ -62,14 +62,14 @@ export default function HomePage() {
               <strong>Scientific Discovery Engine</strong> is a collaborative
               platform for accelerating discovery in science and, more broadly,
               in any field pushing the boundaries of scientific understanding,
-              learning process and building collaborations. We're moving beyond
-              traditional, siloed research practices and embracing a dynamic,
-              interconnected approach where human insight and AI power work in
-              synergy. We are building a platform that empowers to actively
-              pursue the research goals or learn new research field or topic.
-              This paradigm shift is particularly crucial for tackling complex,
-              interdisciplinary challenges like the development of cognizant
-              matter.
+              learning process and building collaborations. We&apos;re moving
+              beyond traditional, siloed research practices and embracing a
+              dynamic, interconnected approach where human insight and AI power
+              work in synergy. We are building a platform that empowers to
+              actively pursue the research goals or learn new research field or
+              topic. This paradigm shift is particularly crucial for tackling
+              complex, interdisciplinary challenges like the development of
+              cognizant matter.
             </p>
           </div>
         </div>
