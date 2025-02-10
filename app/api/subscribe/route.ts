@@ -1,4 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+
+// Initialize the Supabase client with env variables (service role key recommended for server-side)
+const supabaseUrl = process.env.PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function POST(request: Request) {
   try {
@@ -14,15 +20,18 @@ export async function POST(request: Request) {
       );
     }
 
-    // ----- WAITLIST MANAGEMENT LOGIC -----
-    // Here you can add the logic to:
-    //   • Connect to a database (e.g., Supabase, Firebase, PlanetScale, etc.)
-    //   • Insert the email into a "waitlist" or "subscribers" table.
-    //   • Optionally, trigger a welcome email or notification.
-    // ---------------------------------------
+    // Attempt to insert the email into your waitlist table on Supabase
+    const { data, error } = await supabase.from("waitlist").insert([{ email }]);
 
-    // For now, we'll simulate this by logging the email.
-    console.log("New subscription received:", email);
+    if (error) {
+      console.error("Error inserting email into waitlist:", error);
+      return NextResponse.json(
+        {
+          error: "Error adding email to the waitlist. Please try again later.",
+        },
+        { status: 500 }
+      );
+    }
 
     // Simulate a delay (if needed)
     await new Promise((resolve) => setTimeout(resolve, 500));
