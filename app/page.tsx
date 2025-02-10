@@ -33,29 +33,43 @@ export default function HomePage() {
           <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-3xl font-semibold mb-4">Education</h2>
             <p className="text-lg text-gray-300 mb-6">
-              Leveraging active inference and AI-assisted analysis, we craft
-              personalized learning journeys. Our platform tailors educational
-              pathways to your background, goals, and evolving interests.
+              Master complex knowledge domains with AI-guided paths tailored to
+              your needs and scientific ambitions.
             </p>
           </div>
           {/* Research Card */}
           <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-3xl font-semibold mb-4">Research</h2>
             <p className="text-lg text-gray-300 mb-6">
-              Educational pathways are tailored to your background, goals and
-              evolving interests. We craft personalized learning journeys
-              through AI assisted analysis that combines active inference, Large
-              Language models, and cluster analysis.
+              Unearth hidden knowledge, generate breakthrough hypotheses, and
+              accelerate your research with AI-powered exploration.
             </p>
           </div>
           {/* Collaboration Card */}
           <div className="bg-gray-800 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
             <h2 className="text-3xl font-semibold mb-4">Collaboration</h2>
             <p className="text-lg text-gray-300 mb-6">
-              Our platform fosters a vibrant collaborative space where
-              researchers, educators, and innovators connect. Engage with a
-              diverse community to drive cutting-edge projects and share
-              breakthrough ideas.
+              Connect, collaborate, and co-create with a dynamic network of
+              innovators, amplifying your impact on the future of science.
+            </p>
+          </div>
+          {/* New Scientific Discovery Engine Card */}
+          <div className="bg-gray-900 shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300 md:col-span-3">
+            <h2 className="text-3xl font-semibold mb-4">
+              Scientific Discovery Engine
+            </h2>
+            <p className="text-lg text-gray-300 mb-6">
+              <strong>Scientific Discovery Engine</strong> is a collaborative
+              platform for accelerating discovery in science and, more broadly,
+              in any field pushing the boundaries of scientific understanding,
+              learning process and building collaborations. We're moving beyond
+              traditional, siloed research practices and embracing a dynamic,
+              interconnected approach where human insight and AI power work in
+              synergy. We are building a platform that empowers to actively
+              pursue the research goals or learn new research field or topic.
+              This paradigm shift is particularly crucial for tackling complex,
+              interdisciplinary challenges like the development of cognizant
+              matter.
             </p>
           </div>
         </div>
