@@ -1,6 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 
+// Force the API route to be dynamic (prevents static generation).
+export const dynamic = "force-dynamic";
+
 // Initialize the Supabase client with env variables (service role key recommended for server-side)
 const supabaseUrl = process.env.PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
