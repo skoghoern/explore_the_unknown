@@ -8,6 +8,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Added GET handler to prevent Next.js from trying to pre-render this route.
 export async function GET(_request: Request) {
+  void _request;
   return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
 }
 
