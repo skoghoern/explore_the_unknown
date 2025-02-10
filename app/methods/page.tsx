@@ -124,12 +124,14 @@ export default function MethodsPage() {
             </>
           )}
         </section>
-
-        <Image
-          src="/ai_powered_research_platform_overview_components_grey.png"
-          alt="ai powered research platform overview of components"
-          className="mx-auto mb-8"
-        />
+        <div className="relative w-full aspect-[4/3] mb-8">
+          <Image
+            src="/ai_powered_research_platform_overview_components_grey.png"
+            alt="ai powered research platform overview of components"
+            fill
+            className="mx-auto"
+          />
+        </div>
 
         {/* Beyond Individual Papers: Uncovering the Landscape of Knowledge */}
         <section className="mb-8">
@@ -203,11 +205,14 @@ export default function MethodsPage() {
           )}
         </section>
 
-        <Image
-          src="/ai_powered_research_analysis_process_grey.png"
-          alt="ai powered research anaylsis process"
-          className="mx-auto mb-8"
-        />
+        <div className="relative w-full aspect-video mb-8">
+          <Image
+            src="/ai_powered_research_analysis_process_grey.png"
+            alt="ai powered research anaylsis process"
+            fill
+            className="mx-auto"
+          />
+        </div>
         {/* Collaboration */}
         <section className="mb-16">
           <div
@@ -254,11 +259,16 @@ export default function MethodsPage() {
             </ul>
           )}
         </section>
-        <Image
-          src="/mapping_research_dynamics_and_collaboration_grey.png"
-          alt="mapping research dynamics and collaboration"
-          className="mx-auto mb-8"
-        />
+
+        <div className="relative w-full aspect-[9/6] mb-8">
+          <Image
+            src="/mapping_research_dynamics_and_collaboration_grey.png"
+            alt="mapping research dynamics and collaboration"
+            fill
+            className="mx-auto"
+          />
+        </div>
+
         {/* Category Theory */}
         <section className="mb-16">
           <div

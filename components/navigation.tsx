@@ -17,7 +17,7 @@ export function Navigation() {
       icon: Home,
     },
     {
-      href: "/discover",
+      href: "/waitlist",
       label: "Discover",
       icon: FolderGit2,
     },

@@ -78,11 +78,14 @@ export default function HomePage() {
       {/* Methods Section */}
       <section className="bg-gray-900 py-16 px-4 mt-16">
         <div className="max-w-7xl mx-auto text-center">
-          <Image
-            src="/discover_mentor_grey.png"
-            alt="Discover Mentor"
-            className="mx-auto"
-          />
+          <div className="relative w-full aspect-video mx-auto">
+            <Image
+              src="/discover_mentor_grey.png"
+              alt="Discover Mentor"
+              fill
+              className="object-contain"
+            />
+          </div>
           <Link href="/methods" passHref>
             <Button
               size="lg"
