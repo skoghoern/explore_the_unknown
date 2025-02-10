@@ -78,7 +78,7 @@ export default function HomePage() {
       <section className="bg-gray-900 py-16 px-4 mt-16">
         <div className="max-w-7xl mx-auto text-center">
           <img
-            src="/discover_mentor.png"
+            src="/discover_mentor_grey.png"
             alt="Discover Mentor"
             className="mx-auto"
           />
