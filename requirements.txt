@@ -1,2 +1,0 @@
-Flask==1.2.5
-supabase==1.0.0
