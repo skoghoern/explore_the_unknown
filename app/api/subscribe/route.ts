@@ -6,6 +6,11 @@ const supabaseUrl = process.env.PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Added GET handler to prevent Next.js from trying to pre-render this route.
+export async function GET(request: Request) {
+  return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
+}
+
 export async function POST(request: Request) {
   try {
     // Parse the request body (make sure your client sends JSON)
@@ -21,6 +26,8 @@ export async function POST(request: Request) {
     }
 
     // Attempt to insert the email into your waitlist table on Supabase
+    // destructring throws error on deployment build:
+    // const { data: _, error } = await supabase.from("waitlist").insert([{ email }]);
     const response = await supabase.from("waitlist").insert([{ email }]);
 
     if (response.error) {
