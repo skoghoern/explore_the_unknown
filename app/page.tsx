@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import DiscoveryMentorVisualization from "@/components/discovery-mentor-visualization";
 
 export default function HomePage() {
   return (
@@ -78,7 +77,11 @@ export default function HomePage() {
       {/* Methods Section */}
       <section className="bg-gray-900 py-16 px-4 mt-16">
         <div className="max-w-7xl mx-auto text-center">
-          <DiscoveryMentorVisualization />
+          <img
+            src="/discover_mentor.png"
+            alt="Discover Mentor"
+            className="mx-auto"
+          />
           <Link href="/methods" passHref>
             <Button
               size="lg"

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BackgroundPaths from "@/components/kokonutui/background-paths";
 import Image from "next/image";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const teamMembers = [
@@ -48,7 +48,7 @@ const teamMembers = [
   {
     name: "Janna Lumiruusu",
     role: "User Experience & Interface",
-    image: "/active_inference.png",
+    image: "/jana_avatar.png",
     bio: "Passionate about active inference and UI/UX",
     social: {
       linkedin: "#",
@@ -78,7 +78,7 @@ const teamMembers = [
   {
     name: "Benedikt Waldeck",
     role: "Active Inference programmer",
-    image: "/active_inference.png",
+    image: "/ben_avatar.png",
     bio: "Passionate about developing transparent AI",
     social: {
       linkedin: "#",
@@ -96,7 +96,7 @@ export default function TeamPage() {
           {teamMembers.map((member) => (
             <Card key={member.name} className="overflow-hidden">
               <div className="aspect-square relative">
-                <div className="w-[50%] h-[50%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-[75%] h-[75%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <Image
                     src={member.image || "/active_inference.png"}
                     alt={member.name}
@@ -116,9 +116,6 @@ export default function TeamPage() {
                 <div className="flex space-x-1">
                   <Button variant="ghost" size="icon" className="h-6 w-6">
                     <Twitter className="h-3 w-3" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="h-6 w-6">
-                    <Linkedin className="h-3 w-3" />
                   </Button>
                   <Button variant="ghost" size="icon" className="h-6 w-6">
                     <Github className="h-3 w-3" />
