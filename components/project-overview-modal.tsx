@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -172,7 +173,7 @@ export function ProjectOverviewModal({
 
               <div className="border rounded-lg p-6 bg-card">
                 <div className="aspect-[16/10] relative bg-black/5 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/knowledge_areas.png"
                     alt="Knowledge Areas Distribution"
                     className="w-full h-full object-contain"

@@ -105,27 +105,27 @@ export default function MethodsPage() {
                   <strong>Visualizing the Essence:</strong> For each paper, the
                   engine automatically generates a custom Mermaid diagram, where
                   parts of the concepts are represented as a logical graph with
-                  the elements of Category Theory. This isn't a generic
-                  illustration; it's a visual representation of the specific
-                  physical concepts and their relationships as described in that
-                  paper. This allows to quickly grasp the core ideas and how
-                  they connect.
+                  the elements of Category Theory. This isn&apos;t a generic
+                  illustration; it&apos;s a visual representation of the
+                  specific physical concepts and their relationships as
+                  described in that paper. This allows to quickly grasp the core
+                  ideas and how they connect.
                 </li>
                 <li>
                   <strong>Quantitative Assessment:</strong> Beyond qualitative
                   analysis, the engine calculates a set of quantitative metrics,
-                  providing a "cognizant potential" score for each paper. This
-                  isn't about assigning a definitive "intelligence" rating; it's
-                  about identifying promising avenues for further exploration
-                  and self-correction within the strategy of reinforcement
-                  learning.
+                  providing a &quot;cognizant potential&quot; score for each
+                  paper. This isn&apos;t about assigning a definitive
+                  &quot;intelligence&quot; rating; it&apos;s about identifying
+                  promising avenues for further exploration and self-correction
+                  within the strategy of reinforcement learning.
                 </li>
               </ul>
             </>
           )}
         </section>
 
-        <img
+        <Image
           src="/ai_powered_research_platform_overview_components_grey.png"
           alt="ai powered research platform overview of components"
           className="mx-auto mb-8"
@@ -156,10 +156,10 @@ export default function MethodsPage() {
                 extracted from text, next stage is to work directly with
                 scientifically proven evidence, rather than rely on text). This
                 reveals the hidden structure of the field, identifying distinct
-                research areas and emerging trends. It's like creating a map of
-                the intellectual landscape, where each scientific evidence is
-                represented by a point, while the distances are various scores
-                in hyperdimensional space.
+                research areas and emerging trends. It&apos;s like creating a
+                map of the intellectual landscape, where each scientific
+                evidence is represented by a point, while the distances are
+                various scores in hyperdimensional space.
               </li>
               <li>
                 <strong>Hierarchical Relationships:</strong> We go beyond flat
@@ -185,9 +185,9 @@ export default function MethodsPage() {
                     hierarchical structure of the field.
                   </li>
                   <li>
-                    <strong>Radar Charts:</strong> Compare the "cognitive
-                    potential" of different research clusters across various
-                    metrics.
+                    <strong>Radar Charts:</strong> Compare the &quot;cognitive
+                    potential&quot; of different research clusters across
+                    various metrics.
                   </li>
                 </ul>
               </li>
@@ -203,7 +203,7 @@ export default function MethodsPage() {
           )}
         </section>
 
-        <img
+        <Image
           src="/ai_powered_research_analysis_process_grey.png"
           alt="ai powered research anaylsis process"
           className="mx-auto mb-8"
@@ -226,34 +226,35 @@ export default function MethodsPage() {
           {openSections.collaboration && (
             <ul className="text-gray-300 list-disc list-inside ml-4">
               <li>
-                <strong>Annotation and Debate:</strong> The engine isn't a black
-                box. Researchers can annotate the AI's analysis, correcting
-                errors, adding context, and engaging in constructive debate
-                about interpretations. This is the feedback loop which is the
-                basis for understanding user intentions. This is crucial for
-                refining both the AI's understanding also getting into the
-                community's collective knowledge.
+                <strong>Annotation and Debate:</strong> The engine isn&apos;t a
+                black box. Researchers can annotate the AI&apos;s analysis,
+                correcting errors, adding context, and engaging in constructive
+                debate about interpretations. This is the feedback loop which is
+                the basis for understanding user intentions. This is crucial for
+                refining both the AI&apos;s understanding also getting into the
+                community&apos;s collective knowledge.
               </li>
               <li>
                 <strong>Living Templates:</strong> The analysis template itself
-                is dynamic. It's constantly evolving based on user feedback,
-                AI-powered suggestions, and new discoveries in the field. This
-                ensures that scores of each concept are correctly mapped.
+                is dynamic. It&apos;s constantly evolving based on user
+                feedback, AI-powered suggestions, and new discoveries in the
+                field. This ensures that scores of each concept are correctly
+                mapped.
               </li>
               <li>
-                <strong>Knowledge Synthesis:</strong> The engine doesn't just
-                analyze individual papers; it synthesizes knowledge across the
-                entire corpus, creating dynamic literature reviews, identifying
-                open questions, and even suggesting new research hypotheses. In
-                contrast to LLM random hallucinations, this process is directed
-                by scores and metrics obtained from cluster analysis and the
-                driving engine is Active Inference based on probabilities and
-                minimization of uncertainty.
+                <strong>Knowledge Synthesis:</strong> The engine doesn&apos;t
+                just analyze individual papers; it synthesizes knowledge across
+                the entire corpus, creating dynamic literature reviews,
+                identifying open questions, and even suggesting new research
+                hypotheses. In contrast to LLM random hallucinations, this
+                process is directed by scores and metrics obtained from cluster
+                analysis and the driving engine is Active Inference based on
+                probabilities and minimization of uncertainty.
               </li>
             </ul>
           )}
         </section>
-        <img
+        <Image
           src="/mapping_research_dynamics_and_collaboration_grey.png"
           alt="mapping research dynamics and collaboration"
           className="mx-auto mb-8"
@@ -400,8 +401,8 @@ export default function MethodsPage() {
               <li>
                 <strong>User-Driven Exploration:</strong> The researcher is an
                 active agent within the ecosystem. Questions, feedback, and
-                annotations guide the AI's analysis and shape the evolution of
-                the platform.
+                annotations guide the AI&apos;s analysis and shape the evolution
+                of the platform.
               </li>
             </ul>
           )}
@@ -430,7 +431,7 @@ export default function MethodsPage() {
                 The engine analyzes user profiles, including their research
                 interests, publications, annotations, and contributions to the
                 platform. This information is used to create automatically a
-                "skill profile" for each user.
+                &quot;skill profile&quot; for each user.
               </li>
               <li>
                 <strong>Project-Based Groups:</strong> When a new research
@@ -441,7 +442,7 @@ export default function MethodsPage() {
                   <li>
                     <strong>Complementary Skills:</strong> The system seeks
                     users with skills and expertise that complement the
-                    project's needs.
+                    project&apos;s needs.
                   </li>
                   <li>
                     <strong>Shared Interests:</strong> The system identifies
@@ -449,10 +450,10 @@ export default function MethodsPage() {
                     worked on similar papers.
                   </li>
                   <li>
-                    <strong>"Research Neighborhoods":</strong> The system
-                    leverages the concept of "research neighborhoods" to connect
-                    users who are exploring similar areas of the knowledge
-                    landscape.
+                    <strong>&quot;Research Neighborhoods&quot;:</strong> The
+                    system leverages the concept of &quot;research
+                    neighborhoods&quot; to connect users who are exploring
+                    similar areas of the knowledge landscape.
                   </li>
                 </ul>
               </li>

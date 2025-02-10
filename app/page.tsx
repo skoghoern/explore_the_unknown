@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
@@ -77,7 +78,7 @@ export default function HomePage() {
       {/* Methods Section */}
       <section className="bg-gray-900 py-16 px-4 mt-16">
         <div className="max-w-7xl mx-auto text-center">
-          <img
+          <Image
             src="/discover_mentor_grey.png"
             alt="Discover Mentor"
             className="mx-auto"
