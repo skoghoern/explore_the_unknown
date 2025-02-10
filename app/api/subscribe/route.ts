@@ -21,12 +21,10 @@ export async function POST(request: Request) {
     }
 
     // Attempt to insert the email into your waitlist table on Supabase
-    const { data: _, error } = await supabase
-      .from("waitlist")
-      .insert([{ email }]);
+    const response = await supabase.from("waitlist").insert([{ email }]);
 
-    if (error) {
-      console.error("Error inserting email into waitlist:", error);
+    if (response.error) {
+      console.error("Error inserting email into waitlist:", response.error);
       return NextResponse.json(
         {
           error: "Error adding email to the waitlist. Please try again later.",
