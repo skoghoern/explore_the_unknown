@@ -23,7 +23,7 @@ export default function SubscribePage() {
     setLoading(true);
     try {
       // Replace the simulated delay with an actual API call.
-      const res = await fetch("/backend/subscribe", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
