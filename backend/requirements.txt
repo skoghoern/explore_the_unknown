@@ -1,0 +1,2 @@
+Flask==2.2.5
+supabase==1.0.0  # Replace 0.0.x with the correct version according to your needs
