@@ -26,7 +26,7 @@ def is_valid_email(email: str) -> bool:
     # Basic regex check for an email address
     return re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email) is not None
 
-@app.route("/subscribe", methods=["POST"])
+@app.route("/api/subscribe", methods=["POST"])
 def subscribe():
     data = request.get_json() or {}
     email = data.get("email")
