@@ -13,8 +13,8 @@ load_dotenv(dotenv_path=".env.local")
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/api/healthchecker", methods=["GET"])
-def healthchecker():
+@app.route("/api/flask_check", methods=["GET"])
+def flask_checker():
     return {"status": "success", "message": "Integrate Flask Framework with Next.js"}
 
 

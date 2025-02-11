@@ -9,6 +9,10 @@ export default function SubscribePage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const [flaskResponse, setFlaskResponse] = useState<any>(null);
+  const [flaskLoading, setFlaskLoading] = useState(false);
+  const [flaskError, setFlaskError] = useState("");
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
@@ -44,6 +48,28 @@ export default function SubscribePage() {
       setError("An error occurred. Please try again later.");
     }
     setLoading(false);
+  };
+
+  const handleFlaskCheck = async () => {
+    setFlaskError("");
+    setFlaskLoading(true);
+    setFlaskResponse(null);
+    try {
+      const res = await fetch("/api/flask_check");
+      if (!res.ok) {
+        const data = await res.json();
+        setFlaskError(
+          data?.error || "An error occurred while checking Flask API."
+        );
+      } else {
+        const data = await res.json();
+        setFlaskResponse(data);
+      }
+    } catch (err) {
+      console.error(err);
+      setFlaskError("An error occurred while checking Flask API.");
+    }
+    setFlaskLoading(false);
   };
 
   // Add this effect to prevent scrolling
@@ -84,6 +110,25 @@ export default function SubscribePage() {
             </Button>
           </form>
         )}
+
+        <div className="mt-4">
+          <Button
+            onClick={handleFlaskCheck}
+            disabled={flaskLoading}
+            className="w-full py-3"
+          >
+            {flaskLoading ? "Checking..." : "Check Flask API"}
+          </Button>
+          {flaskResponse && (
+            <p className="mt-2 text-green-400 text-sm">
+              {flaskResponse.message}
+            </p>
+          )}
+          {flaskError && (
+            <p className="mt-2 text-red-400 text-sm">{flaskError}</p>
+          )}
+        </div>
+
         <div className="mt-6">
           <Link href="/" className="text-blue-400 hover:underline">
             Return Home
