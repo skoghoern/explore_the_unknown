@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import re
 from dotenv import load_dotenv
 import os
@@ -10,6 +11,7 @@ from supabase import create_client  # make sure you have the proper supabase pac
 load_dotenv(dotenv_path=".env.local")
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/healthchecker", methods=["GET"])
 def healthchecker():
