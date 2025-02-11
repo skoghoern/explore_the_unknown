@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "Subscription successful! Thank you for joining our waitlist.",
+        message: "Subscription successful! Thank you for joining our waitlist!",
       },
       { status: 200 }
     );
