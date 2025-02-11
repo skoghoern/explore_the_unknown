@@ -6,7 +6,8 @@ import re
 import time
 from supabase import create_client  # make sure you have the proper supabase package installed
 
-load_dotenv()
+# Specify the .env.local file
+load_dotenv(dotenv_path=".env.local")
 
 app = Flask(__name__)
 
@@ -18,7 +19,6 @@ def healthchecker():
 # Get environment variables (adjust the names as needed)
 SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-
 # Initialize the Python Supabase client
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
