@@ -60,5 +60,14 @@ def subscribe():
         "message": "Subscription successful! Thank you for joining our waitlist."
     }), 200
 
+@app.route("/api/post_test", methods=["POST"])
+def post_test():
+    data = request.get_json() or {}
+    message = data.get("message", "No message provided")
+    return jsonify({
+        "status": "success",
+        "message": f"Test POST received: {message}"
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)

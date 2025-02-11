@@ -23,7 +23,7 @@ export default function SubscribePage() {
     e.preventDefault();
     setError("");
 
-    // Validate the email address format on the client, too
+    // Client-side email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address.");
@@ -76,6 +76,23 @@ export default function SubscribePage() {
       setFlaskError("An error occurred while checking Flask API.");
     }
     setFlaskLoading(false);
+  };
+
+  // New test POST function
+  const handleTestPost = async () => {
+    try {
+      const res = await fetch("/api/post_test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "Hello from test POST!" }),
+      });
+      const data = await res.json();
+      console.log("Test POST response:", data);
+      alert("Test POST response: " + JSON.stringify(data));
+    } catch (err) {
+      console.error("Error on test POST:", err);
+      alert("Error on test POST. Check console for details.");
+    }
   };
 
   // Add this effect to prevent scrolling
@@ -133,6 +150,13 @@ export default function SubscribePage() {
           {flaskError && (
             <p className="mt-2 text-red-400 text-sm">{flaskError}</p>
           )}
+        </div>
+
+        {/* New button for testing a simple POST */}
+        <div className="mt-4">
+          <Button onClick={handleTestPost} className="w-full py-3">
+            Send Test POST
+          </Button>
         </div>
 
         <div className="mt-6">
