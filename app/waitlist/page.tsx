@@ -33,7 +33,7 @@ export default function SubscribePage() {
     setLoading(true);
     try {
       // Replace the simulated delay with an actual API call.
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch("/api/subscribe1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -81,7 +81,7 @@ export default function SubscribePage() {
   // New test POST function
   const handleTestPost = async () => {
     try {
-      const res = await fetch("/api/post_test", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: "Hello from test POST!" }),

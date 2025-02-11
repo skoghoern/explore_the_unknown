@@ -28,8 +28,8 @@ def is_valid_email(email: str) -> bool:
     # Basic regex check for an email address
     return re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email) is not None
 
-@app.route("/api/subscribe", methods=["POST"])
-def subscribe():
+@app.route("/api/subscribe1", methods=["POST"])
+def subscribe1():
     data = request.get_json() or {}
     email = data.get("email")
     
@@ -60,8 +60,8 @@ def subscribe():
         "message": "Subscription successful! Thank you for joining our waitlist."
     }), 200
 
-@app.route("/api/post_test", methods=["POST"])
-def post_test():
+@app.route("/api/subscribe", methods=["POST"])
+def subscribe():
     data = request.get_json() or {}
     message = data.get("message", "No message provided")
     return jsonify({
