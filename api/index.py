@@ -11,7 +11,7 @@ load_dotenv(dotenv_path=".env.local")
 
 app = Flask(__name__)
 
-@app.route("/api/healthchecker", methods=["GET"])
+@app.route("/healthchecker", methods=["GET"])
 def healthchecker():
     return {"status": "success", "message": "Integrate Flask Framework with Next.js"}
 
@@ -26,7 +26,7 @@ def is_valid_email(email: str) -> bool:
     # Basic regex check for an email address
     return re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email) is not None
 
-@app.route("/api/subscribe", methods=["POST"])
+@app.route("/subscribe", methods=["POST"])
 def subscribe():
     data = request.get_json() or {}
     email = data.get("email")
