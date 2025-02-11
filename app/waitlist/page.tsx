@@ -3,13 +3,19 @@ import React, { useState, FormEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+interface FlaskResponse {
+  message: string;
+}
+
 export default function SubscribePage() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const [flaskResponse, setFlaskResponse] = useState<any>(null);
+  const [flaskResponse, setFlaskResponse] = useState<FlaskResponse | null>(
+    null
+  );
   const [flaskLoading, setFlaskLoading] = useState(false);
   const [flaskError, setFlaskError] = useState("");
 
