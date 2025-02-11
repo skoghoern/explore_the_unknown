@@ -3,27 +3,17 @@ import React, { useState, FormEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-interface FlaskResponse {
-  message: string;
-}
-
 export default function SubscribePage() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const [flaskResponse, setFlaskResponse] = useState<FlaskResponse | null>(
-    null
-  );
-  const [flaskLoading, setFlaskLoading] = useState(false);
-  const [flaskError, setFlaskError] = useState("");
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
-    // Client-side email format validation
+    // Validate the email address format on the client, too
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address.");
@@ -33,7 +23,7 @@ export default function SubscribePage() {
     setLoading(true);
     try {
       // Replace the simulated delay with an actual API call.
-      const res = await fetch("/api/subscribe1", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -54,45 +44,6 @@ export default function SubscribePage() {
       setError("An error occurred. Please try again later.");
     }
     setLoading(false);
-  };
-
-  const handleFlaskCheck = async () => {
-    setFlaskError("");
-    setFlaskLoading(true);
-    setFlaskResponse(null);
-    try {
-      const res = await fetch("/api/flask_check");
-      if (!res.ok) {
-        const data = await res.json();
-        setFlaskError(
-          data?.error || "An error occurred while checking Flask API."
-        );
-      } else {
-        const data = await res.json();
-        setFlaskResponse(data);
-      }
-    } catch (err) {
-      console.error(err);
-      setFlaskError("An error occurred while checking Flask API.");
-    }
-    setFlaskLoading(false);
-  };
-
-  // New test POST function
-  const handleTestPost = async () => {
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: "Hello from test POST!" }),
-      });
-      const data = await res.json();
-      console.log("Test POST response:", data);
-      alert("Test POST response: " + JSON.stringify(data));
-    } catch (err) {
-      console.error("Error on test POST:", err);
-      alert("Error on test POST. Check console for details.");
-    }
   };
 
   // Add this effect to prevent scrolling
@@ -133,32 +84,6 @@ export default function SubscribePage() {
             </Button>
           </form>
         )}
-
-        <div className="mt-4">
-          <Button
-            onClick={handleFlaskCheck}
-            disabled={flaskLoading}
-            className="w-full py-3"
-          >
-            {flaskLoading ? "Checking..." : "Check Flask API"}
-          </Button>
-          {flaskResponse && (
-            <p className="mt-2 text-green-400 text-sm">
-              {flaskResponse.message}
-            </p>
-          )}
-          {flaskError && (
-            <p className="mt-2 text-red-400 text-sm">{flaskError}</p>
-          )}
-        </div>
-
-        {/* New button for testing a simple POST */}
-        <div className="mt-4">
-          <Button onClick={handleTestPost} className="w-full py-3">
-            Send Test POST
-          </Button>
-        </div>
-
         <div className="mt-6">
           <Link href="/" className="text-blue-400 hover:underline">
             Return Home
