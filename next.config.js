@@ -11,7 +11,7 @@ const nextConfig = {
       },
       {
         source: "/api_ts/:path*",
-        destination: "/app/api/",
+        destination: "/api/:path*",
       },
     ];
   },
