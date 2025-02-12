@@ -62,7 +62,8 @@ export default function SubscribePage() {
         </h1>
         <p className="mb-6 md:mb-8">
           Subscribe now to get early access and receive updates on our
-          breakthrough platform that revolutionizes open, decentralized science!
+          breakthrough platform that revolutionizes open and decentralized
+          science!
         </p>
         {success ? (
           <div className="bg-green-500 p-4 rounded-md mb-4">
