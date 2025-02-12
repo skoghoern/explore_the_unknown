@@ -76,7 +76,7 @@ function MainComponent() {
     handleSubmit,
     isLoading,
   } = useChat({
-    api: "/api/chat",
+    api: "/api_ts/chat",
     onError: (error) => {
       console.error("Chat error:", error);
     },
