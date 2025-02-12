@@ -10,7 +10,7 @@ const nextConfig = {
             : "/api/",
       },
       {
-        source: "api_ts/:path*",
+        source: "/api_ts/:path*",
         destination: "/app/api/",
       },
     ];
