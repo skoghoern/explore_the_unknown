@@ -581,6 +581,28 @@ export default function MethodsPage() {
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
+            {/* Diffusion of Thoughts */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 hover:bg-gray-800/70 transition-colors">
+              <h3 className="text-2xl font-semibold mb-4">
+                Diffusion of Thoughts
+              </h3>
+              <p className="text-gray-300 mb-6">
+                An example of our ongoing development of AI-powered research
+                methodologies. This repository integrates diffusion models and
+                Chain-of-Thought (CoT) technique to improve the reasoning
+                ability in autoregressive language models.
+              </p>
+              <a
+                href="https://github.com/Alignment-Lab-AI/diffusion-of-thoughts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300"
+              >
+                <Github className="w-5 h-5" />
+                <span>View Diffusion of thoughts Repository</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </section>
 
